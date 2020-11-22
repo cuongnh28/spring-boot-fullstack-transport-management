@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../taco-cloud-basic-master/taco-cloud.iml" filepath="$PROJECT_DIR$/../taco-cloud-basic-master/taco-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Backend/transport-management.iml" filepath="$PROJECT_DIR$/Backend/transport-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Frontend/transport-management-FE.iml" filepath="$PROJECT_DIR$/Frontend/transport-management-FE.iml" />
+    </modules>
+  </component>
+</project>
