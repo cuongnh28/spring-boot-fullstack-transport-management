@@ -1,4 +1,4 @@
-package transport;
+package transport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 	
 	private Environment env;
-	
-	//@Value("${JAVA_PATH}")
-	//private String myVariable;
+
 	@Autowired
 	HomeController(Environment env){
 		this.env = env;

@@ -24,12 +24,12 @@ public class TaiXeController {
 
     //Lay toan bo tai xe.
     @RequestMapping(value = "/taixe", method = RequestMethod.GET)
-    public ResponseEntity<List<TaiXe>> findAllTaiXe() {
-        List<TaiXe> taiXes = taiXeService.getAllTaiXe();
-        if (taiXes.isEmpty()) {
+    public ResponseEntity<List<TaiXe>> getAllTaiXe() {
+        List<TaiXe> listTaiXe = taiXeService.getAllTaiXe();
+        if (listTaiXe.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(taiXes, HttpStatus.OK);
+        return new ResponseEntity<>(listTaiXe, HttpStatus.OK);
     }
 
     //Lay tai xe theo Id.
@@ -43,15 +43,25 @@ public class TaiXeController {
         return new ResponseEntity<>(taiXe.get(), HttpStatus.OK);
     }
 
+    //Tim kiem gan dung theo truong nhap vao.
+    @RequestMapping(value = "/taixe/search/{keyword}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<TaiXe>> getTaiXeByKeyword(@PathVariable("keyword") String keyword) {
+        List<TaiXe> listTaiXe = taiXeService.searchTaiXeByKeyword(keyword);
+        if (listTaiXe.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listTaiXe, HttpStatus.OK);
+    }
+
     //Them tai xe.
-    @RequestMapping(value = "/taixe", method = RequestMethod.POST)
+    @RequestMapping(value = "/taixe/create", method = RequestMethod.POST)
     public ResponseEntity<TaiXe> createTaiXe(@RequestBody TaiXe taiXe, UriComponentsBuilder builder) {
         taiXeService.saveTaiXe(taiXe);
         return new ResponseEntity<>(taiXe, HttpStatus.CREATED);
     }
 
     //Sua tai xe.
-    @RequestMapping(value = "/taixe/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/taixe/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<TaiXe> updateTaiXe(@PathVariable("id") Integer id, @RequestBody TaiXe taiXe) {
         Optional<TaiXe> currentTaiXe = taiXeService.getTaiXeById(id);
 
@@ -72,7 +82,7 @@ public class TaiXeController {
     }
 
     //Xoa tai xe theo id.
-    @RequestMapping(value = "/taixe/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/taixe/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<TaiXe> deleteTaiXe(@PathVariable("id") int id) {
         Optional<TaiXe> taiXe = taiXeService.getTaiXeById(id);
         if (!taiXe.isPresent()) {

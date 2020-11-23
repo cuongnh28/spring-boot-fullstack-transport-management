@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <title>Danh sách tài xế</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><br>
+                <strong>Danh sách tài xế</strong>
+            </div>
+            <div class="panel-body">
+                <form method="get" th:action="@{/taixe}">
+                    Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+                    &nbsp;
+                    <input type="submit" value="Search" />
+                </form>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên</th>
+                        <th>Chứng minh thư</th>
+                        <th>Mã số bằng lái</th>
+                        <th>Loại bằng</th>
+                        <th>Địa chỉ</th>
+                        <th>Ngày sinh</th>
+                        <th>Thâm niên</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="taiXe: ${listTaiXe}">
+                    <tr>
+                        <td><a th:href="'taixe/' + ${taiXe.taiXeId}" th:text="${taiXe.taiXeId}"></a></td>
+                        <td th:text="${taiXe.ten}"></td>
+                        <td th:text="${taiXe.cmt}"></td>
+                        <td th:text="${taiXe.maSoBangLai}"></td>
+                        <td th:text="${taiXe.loaiBang}"></td>
+                        <td th:text="${taiXe.diaChi}"></td>
+                        <td th:text="${taiXe.ngaySinh}"></td>
+                        <td th:text="${taiXe.thamNien} + ' năm'"></td>
+                        <td><a class="btn btn-warning" th:href="'taixe/update/'+${taiXe.taiXeId}" th:text="Sửa"></a></td>
+                        <td><a class="btn btn-danger" th:href="'taixe/delete/'+${taiXe.taiXeId}" th:text="Xóa"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                    <td><a class="btn btn-primary" th:href="'taixe/create'" th:text="Thêm"></a></td>
+<!--                <td><buton class="btn btn-primary" onclick=window.location(th:href="@{/taixe/create}"></buton></td>-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

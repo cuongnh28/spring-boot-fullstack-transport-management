@@ -37,4 +37,9 @@ public class TaiXeServiceImpl implements TaiXeService {
     public Optional<TaiXe> getTaiXeById(int id) {
         return taiXeRepo.findById(id);
     }
+
+    @Override
+    public List<TaiXe> searchTaiXeByKeyword(String keyword) {
+        return taiXeRepo.searchTaiXeByKeyword(keyword);
+    }
 }
