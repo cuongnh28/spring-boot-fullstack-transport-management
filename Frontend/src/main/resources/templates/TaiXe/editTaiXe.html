@@ -15,11 +15,11 @@
         <div class="panel-body">
             <form method="post" action="/taixe/update/${taiXe.taiXeId}" th:action="@{'/taixe/update/'+${taiXe.taiXeId}}">
                 <input type="text" name="ten" th:value="${taiXe.ten}" required/>
-                <input type="text" name="cmt" th:value="${taiXe.cmt}" required/>
-                <input type="text" name="maSoBangLai" th:value="${taiXe.maSoBangLai}" required/>
+                <input type="text" name="cmt" th:value="${taiXe.cmt}" readonly/>
+                <input type="text" name="maSoBangLai" th:value="${taiXe.maSoBangLai}" readonly/>
                 <input type="text" name="loaiBang" th:value="${taiXe.loaiBang}" required/>
                 <input type="text" name="diaChi" th:value="${taiXe.diaChi}" required/>
-                <input type="text" name="ngaySinh" th:value="${taiXe.ngaySinh}" required/>
+                <input type="date" name="ngaySinh" min="1900-01-01" max="2000-12-31" th:value="${taiXe.ngaySinh}" required/>
                 <input type="text" name="thamNien" th:value="${taiXe.thamNien}" required/>
                 <input type="submit" name="submit" class="btn btn-success" value="Sửa"/>
             </form>

@@ -12,10 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
+
 //@Data Su dung DATA trong intellij bi loi nen get set phai viet lai.
 @Entity
 public class TaiXe {
@@ -23,6 +26,7 @@ public class TaiXe {
 	@Column(name="taiXeId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int taiXeId;
+//	@Size(min = 5, message = "Name must be at least 5 characters long")
 	private String ten;
 	@NotNull
 	private String cmt;
@@ -30,6 +34,7 @@ public class TaiXe {
 	private String maSoBangLai;
 	private String loaiBang;
 	private String diaChi;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngaySinh;
 	private int thamNien;
 
