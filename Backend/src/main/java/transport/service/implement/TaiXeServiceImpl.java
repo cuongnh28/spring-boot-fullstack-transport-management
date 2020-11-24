@@ -42,4 +42,9 @@ public class TaiXeServiceImpl implements TaiXeService {
     public List<TaiXe> searchTaiXeByKeyword(String keyword) {
         return taiXeRepo.searchTaiXeByKeyword(keyword);
     }
+
+    @Override
+    public boolean checkTonTai(String cmt, String maSoBangLai) {
+        return taiXeRepo.checkTonTai(cmt, maSoBangLai);
+    }
 }

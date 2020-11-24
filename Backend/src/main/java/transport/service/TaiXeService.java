@@ -11,4 +11,5 @@ public interface TaiXeService {
     void deleteTaiXe(int id);
     Optional<TaiXe> getTaiXeById(int id);
     List<TaiXe> searchTaiXeByKeyword(String keyword);
+    boolean checkTonTai(String cmt, String maSoBangLai);
 }

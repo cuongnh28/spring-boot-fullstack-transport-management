@@ -56,8 +56,15 @@ public class TaiXeController {
     //Them tai xe.
     @RequestMapping(value = "/taixe/create", method = RequestMethod.POST)
     public ResponseEntity<TaiXe> createTaiXe(@RequestBody TaiXe taiXe, UriComponentsBuilder builder) {
-        taiXeService.saveTaiXe(taiXe);
-        return new ResponseEntity<>(taiXe, HttpStatus.CREATED);
+        String cmt = taiXe.getCmt();
+        String maSoBangLai = taiXe.getMaSoBangLai();
+        if(taiXeService.checkTonTai(cmt,maSoBangLai)){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else{
+            taiXeService.saveTaiXe(taiXe);
+            return new ResponseEntity<>(taiXe, HttpStatus.CREATED);
+        }
     }
 
     //Sua tai xe.
@@ -79,6 +86,7 @@ public class TaiXeController {
 
         taiXeService.saveTaiXe(currentTaiXe.get());
         return new ResponseEntity<>(currentTaiXe.get(), HttpStatus.OK);
+
     }
 
     //Xoa tai xe theo id.
