@@ -30,6 +30,7 @@ public class TaiXeController {
         //Neu khong co keyword thi hien thi toan bo, con neu co thi hien thi theo keyword.
         if(keyword != null){
             model.addAttribute("listTaiXe", taiXeService.getTaiXeByKeyword(keyword));
+            model.addAttribute("keyword", keyword);
         }
         else{
             model.addAttribute("listTaiXe", taiXeService.getAllTaiXe());

@@ -37,8 +37,7 @@ public class TaiXeController {
     public ResponseEntity<TaiXe> getTaiXeById(@PathVariable("id") int id) {
         Optional<TaiXe> taiXe = taiXeService.getTaiXeById(id);
         if (!taiXe.isPresent()) {
-            return new ResponseEntity<>(taiXe.get(),
-                    HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(taiXe.get(), HttpStatus.OK);
     }
@@ -73,7 +72,7 @@ public class TaiXeController {
         Optional<TaiXe> currentTaiXe = taiXeService.getTaiXeById(id);
 
         if (!currentTaiXe.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         currentTaiXe.get().setTen(taiXe.getTen());
@@ -97,7 +96,7 @@ public class TaiXeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         taiXeService.deleteTaiXe(taiXe.get().getTaiXeId());
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

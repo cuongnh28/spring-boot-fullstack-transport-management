@@ -10,9 +10,7 @@ import java.util.List;
 
 @Repository
 public interface TaiXeRepository extends JpaRepository<TaiXe, Integer> {
-    @Query("SELECT taiXe FROM TaiXe taiXe WHERE taiXe.cmt LIKE %?1%"
-            + "OR taiXe.ten LIKE %?1%"
-            + "OR taiXe.diaChi Like %?1%")
+    @Query("SELECT taiXe FROM TaiXe taiXe WHERE taiXe.ten LIKE %?1%")
     public List<TaiXe> searchTaiXeByKeyword(String keyword);
 
     //Neu ton tai cmt hoac maSoBangLai thi khong them vao.
