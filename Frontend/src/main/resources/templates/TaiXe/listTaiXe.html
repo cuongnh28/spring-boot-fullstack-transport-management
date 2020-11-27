@@ -18,7 +18,7 @@
             </div>
             <div class="panel-body">
 
-                <form class="form-inline" method="get" th:action="@{/taixe}">
+                <form class="form-inline" method="get" th:action="@{/taiXe}">
                     <div class="form-group  mb-2 mr-3" style="width:70%;">
                        <input class="form-control " type="text" style="width:100%;!important;" name="keyword" id="keyword" th:value="${keyword}" required />
                     </div>
@@ -43,7 +43,7 @@
                     </thead>
                     <tbody th:each="taiXe: ${listTaiXe}">
                     <tr>
-                        <td><a th:href="'taixe/' + ${taiXe.taiXeId}" th:text="${taiXe.taiXeId}"></a></td>
+                        <td><a th:href="'taiXe/' + ${taiXe.taiXeId}" th:text="${taiXe.taiXeId}"></a></td>
                         <td th:text="${taiXe.ten}"></td>
 <!--                        <td th:text="${taiXe.cmt}"></td>-->
                         <td th:text="${taiXe.maSoBangLai}"></td>
@@ -51,13 +51,13 @@
 <!--                        <td th:text="${taiXe.diaChi}"></td>-->
 <!--                        <td th:text="${taiXe.ngaySinh}"></td>-->
 <!--                        <td th:text="${taiXe.thamNien} + ' năm'"></td>-->
-                        <td><a class="btn btn-warning" th:href="'taixe/update/'+${taiXe.taiXeId}" th:text="Sửa"></a></td>
-                        <td><a class="btn btn-danger" th:href="'taixe/delete/'+${taiXe.taiXeId}" th:text="Xóa"></a></td>
+                        <td><a class="btn btn-warning" th:href="'taiXe/edit/'+${taiXe.taiXeId}" th:text="Sửa"></a></td>
+                        <td><a class="btn btn-danger" th:href="'taiXe/delete/'+${taiXe.taiXeId}" th:text="Xóa"></a></td>
                     </tr>
                     </tbody>
                 </table>
-                    <td><a class="btn btn-primary" th:href="'taixe/create'" th:text="Thêm"></a></td>
-                <td><a class="btn btn-primary" th:href="'taixe'" th:text="'Danh'+' sách'"></a></td>
+                    <td><a class="btn btn-primary" th:href="'taiXe/create'" th:text="Thêm"></a></td>
+                <td><a class="btn btn-primary" th:href="'taiXe'" th:text="'Danh'+' sách'"></a></td>
 <!--                    <td><a class="btn btn-info" th:href="@{/taixe}" th:text="Danh sách"></a></td>-->
 <!--                    <td><a class="btn btn-info" th:href="taixe" th:text="Danh sách"></a></td>-->
 <!--                <td><buton class="btn btn-primary" onclick=window.location(th:href="@{/taixe/create}"></buton></td>-->

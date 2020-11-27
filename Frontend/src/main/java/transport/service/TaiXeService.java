@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public class TaiXeService {
-    public static final String REST_SERVICE_URI = "http://localhost:8080/taixe/";
+    public static final String REST_SERVICE_URI = "http://localhost:8080/taiXe/";
     RestTemplate restTemplate = new RestTemplate();
 
     //Get
@@ -46,9 +46,7 @@ public class TaiXeService {
     }
 
     //Delete
-    public void deleteTaiXe(TaiXe taiXe, int id){
-        System.out.println("Test API xoa tai xe.");
-        System.out.println(taiXe);
+    public void deleteTaiXe(int id){
         restTemplate.delete(REST_SERVICE_URI+"delete/"+id);
     }
 }

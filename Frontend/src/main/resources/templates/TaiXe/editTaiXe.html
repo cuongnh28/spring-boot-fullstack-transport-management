@@ -13,7 +13,7 @@
             <strong>Sửa tài xế</strong>
         </div>
         <div class="panel-body">
-            <form method="post" action="/taixe/update/${taiXe.taiXeId}" th:action="@{'/taixe/update/'+${taiXe.taiXeId}}">
+            <form method="post" action="/taiXe/update/${taiXe.taiXeId}" th:action="@{'/taiXe/update/'+${taiXe.taiXeId}}">
                 <input type="text" name="ten" th:value="${taiXe.ten}" required/>
                 <input type="text" name="cmt" th:value="${taiXe.cmt}" readonly/>
                 <input type="text" name="maSoBangLai" th:value="${taiXe.maSoBangLai}" readonly/>

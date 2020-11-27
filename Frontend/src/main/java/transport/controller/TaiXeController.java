@@ -4,21 +4,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import transport.model.TaiXe;
 import transport.service.TaiXeService;
 import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/taixe")
+@RequestMapping("/taiXe")
 public class TaiXeController {
-    @Autowired
     TaiXeService taiXeService;
-
+    @Autowired
+    public TaiXeController(TaiXeService taiXeService){
+        this.taiXeService = taiXeService;
+    }
     @GetMapping("/{id}")
     public String getTaiXeById(@PathVariable("id") int id, Model model){
         TaiXe taiXe = taiXeService.getTaiXeById(id);
@@ -50,13 +49,13 @@ public class TaiXeController {
         return "TaiXe/addTaiXe";
     }
 
-    @PostMapping("/create")
-    public String createTaiXe(TaiXe taiXe, Model model){
+    @PostMapping("/store")
+    public String storeTaiXe(TaiXe taiXe){
         taiXeService.createTaiXe(taiXe);
-        return "redirect:/taixe";
+        return "redirect:/taiXe";
     }
 
-    @GetMapping("update/{id}")
+    @GetMapping("/edit/{id}")
     public String editTaiXe(@PathVariable("id") int id, Model model){
         TaiXe taiXe = taiXeService.getTaiXeById(id);
         taiXe.setTaiXeId(id);
@@ -64,16 +63,16 @@ public class TaiXeController {
         return "TaiXe/editTaiXe";
     }
 
-    @PostMapping("update/{id}")
-    public String updateTaiXe(@PathVariable("id") int id, TaiXe taiXe, Model model){
+    @PostMapping("/update/{id}")
+    public String updateTaiXe(@PathVariable("id") int id, TaiXe taiXe){
         taiXeService.updateTaiXe(taiXe, id);
-        return "redirect:/taixe/{id}";
+        return "redirect:/taiXe/{id}";
     }
 
-    @GetMapping("delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteTaiXe(@PathVariable("id") int id){
         TaiXe taiXe = taiXeService.getTaiXeById(id);
-        taiXeService.deleteTaiXe(taiXe, id);
-        return "redirect:/taixe";
+        taiXeService.deleteTaiXe(id);
+        return "redirect:/taiXe";
     }
 }

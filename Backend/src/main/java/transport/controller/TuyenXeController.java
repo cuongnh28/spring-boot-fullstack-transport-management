@@ -22,7 +22,7 @@ public class TuyenXeController {
     }
 
     //Lay toan bo tuyen xe.
-    @RequestMapping(value = "/tuyenxe", method = RequestMethod.GET)
+    @RequestMapping(value = "/tuyenXe", method = RequestMethod.GET)
     public ResponseEntity<List<TuyenXe>> getAllTuyenXe(){
         List<TuyenXe> listTuyenXe= tuyenXeService.getAllTuyenXe();
         if(listTuyenXe.isEmpty()){
@@ -34,11 +34,11 @@ public class TuyenXeController {
     }
 
     //Lay tuyenxe theo Id.
-    @RequestMapping(value = "/tuyenxe/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/tuyenXe/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TuyenXe> getTaiXeById(@PathVariable("id") int id){
         Optional<TuyenXe> tuyenXe = tuyenXeService.getTuyenXeById(id);
         if(!tuyenXe.isPresent()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else{
             return new ResponseEntity<>(tuyenXe.get(), HttpStatus.OK);
@@ -46,29 +46,29 @@ public class TuyenXeController {
     }
 
     //Tim kiem theo diem dau hoac diem cuoi.
-    @RequestMapping(value = "/tuyenxe/search/{keyword}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/tuyenXe/search/{keyword}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TuyenXe>> getTuyenXeByKeyword(@PathVariable("keyword") String keyword){
         List<TuyenXe> listTuyenXe = tuyenXeService.searchTuyenXeByKeyWord(keyword);
         if(listTuyenXe.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else{
             return new ResponseEntity<>(listTuyenXe, HttpStatus.OK);
         }
     }
 
-    @RequestMapping(value = "/tuyenxe/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/tuyenXe/create", method = RequestMethod.POST)
     public ResponseEntity<TuyenXe> createTuyenXe(@RequestBody TuyenXe tuyenXe){
         tuyenXeService.saveTuyenXe(tuyenXe);
         return new ResponseEntity<>(tuyenXe, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/tuyenxe/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/tuyenXe/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<TuyenXe> updateTuyenXe(@PathVariable("id") int id, @RequestBody TuyenXe tuyenXe){
         Optional<TuyenXe> currentTuyenXe = tuyenXeService.getTuyenXeById(id);
 
         if(!currentTuyenXe.isPresent()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         currentTuyenXe.get().setDiemDau(tuyenXe.getDiemDau());
@@ -79,12 +79,12 @@ public class TuyenXeController {
     }
 
     //Xoa tai xe by Id.
-    @RequestMapping(value = "/tuyenxe/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/tuyenXe/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<TuyenXe> deleteTuyenXeById(@PathVariable("id") int id){
         Optional<TuyenXe> currentTuyenXe = tuyenXeService.getTuyenXeById(id);
         //Neu khong ton tai.
         if(!currentTuyenXe.isPresent()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else{
             tuyenXeService.deleteTuyenXe(id);

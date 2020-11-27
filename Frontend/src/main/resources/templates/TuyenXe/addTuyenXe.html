@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm tuyến xe</title>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>Thêm tuyến xe</strong>
+        </div>
+        <div class="panel-body">
+            <form method="post" action="/tuyenXe/store" th:action="@{/tuyenXe/store}">
+                <input type="text" name="diemDau" placeholder="Điểm đầu" required/>
+                <input type="text" name="diemCuoi" placeholder="Điểm cuối" required/>
+                <input type="text" name="doPhucTap" placeholder="Độ phức tạp" required/>
+                <input type="submit" name="submit" class="btn btn-success" value="Thêm"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

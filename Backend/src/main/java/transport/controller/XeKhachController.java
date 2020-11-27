@@ -21,7 +21,7 @@ public class XeKhachController {
     }
 
     //lay toan bo xe khach.
-    @RequestMapping(value = "/xekhach", method = RequestMethod.GET)
+    @RequestMapping(value = "/xeKhach", method = RequestMethod.GET)
     public ResponseEntity<List<XeKhach>> getAllXeKhach(){
         List<XeKhach> listXeKhach = xeKhachService.getAllXeKhach();
         if(listXeKhach.isEmpty()){
@@ -33,7 +33,7 @@ public class XeKhachController {
     }
 
     //Lay xe khach theo id.
-    @RequestMapping(value = "/xekhach/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/xeKhach/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<XeKhach> getXeKhachById(@PathVariable("id") int id){
         Optional<XeKhach> xeKhach = xeKhachService.getXeKhachById(id);
         if(!xeKhach.isPresent()){
@@ -45,7 +45,7 @@ public class XeKhachController {
     }
 
     //Tim kiem thong tin theo bien so.
-    @RequestMapping(value = "/xekhach/search/{keyword}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/xeKhach/search/{keyword}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<XeKhach>> getXeKhachByKeyword(@PathVariable("keyword") String keyword){
         List<XeKhach> listXeKhach = xeKhachService.searchXeKhachByKeyword(keyword);
         if(listXeKhach.isEmpty()){
@@ -57,14 +57,19 @@ public class XeKhachController {
     }
 
     //Them xe khach.
-    @RequestMapping(value = "/xekhach/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/xeKhach/create", method = RequestMethod.POST)
     public ResponseEntity<XeKhach> createXeKhach(@RequestBody XeKhach xeKhach){
-        xeKhachService.saveXeKhach(xeKhach);
-        return new ResponseEntity<>(xeKhach, HttpStatus.CREATED);
+        if(xeKhachService.checkTonTai(xeKhach.getBienSo())){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else{
+            xeKhachService.saveXeKhach(xeKhach);
+            return new ResponseEntity<>(xeKhach, HttpStatus.CREATED);
+        }
     }
 
     //Sua xe khach.
-    @RequestMapping(value = "/xekhach/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/xeKhach/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<XeKhach> updateXeKhach(@RequestBody XeKhach xeKhach, @PathVariable("id") int id){
         Optional<XeKhach> currentXeKhach = xeKhachService.getXeKhachById(id);
         if(!currentXeKhach.isPresent()){
@@ -86,7 +91,7 @@ public class XeKhachController {
     }
 
     //Xoa xe khach theo id.
-    @RequestMapping(value = "/xekhach/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/xeKhach/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<XeKhach> deleteXeKhach(@PathVariable("id") int id){
         Optional<XeKhach> xeKhach = xeKhachService.getXeKhachById(id);
         if(!xeKhach.isPresent()){

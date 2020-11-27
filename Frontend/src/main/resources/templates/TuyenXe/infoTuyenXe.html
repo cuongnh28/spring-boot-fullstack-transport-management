@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <title>Thông tin tuyến xe</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><br>
+            <strong>Thông tin tài xế</strong>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Điểm đầu</th>
+                    <th>Điểm cuối</th>
+                    <th>Độ phức tạp</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${tuyenXe.tuyenXeId}"></td>
+                    <td th:text="${tuyenXe.diemDau}"></td>
+                    <td th:text="${tuyenXe.diemCuoi}"></td>
+                    <td th:text="${tuyenXe.doPhucTap}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
