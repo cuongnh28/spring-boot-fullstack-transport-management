@@ -1,0 +1,1 @@
+INSERT INTO `transportationmanagementsystem`.`xe_khach` (`bien_so`, `doi_xe`, `hang_san_xuat`, `mau_xe`, `model`, `ngay_bao_duong`, `so_ghe`, `so_nam_su_dung`) VALUES ('37F1-7782', '2020', 'Honda', 'Hồng', 'ya', '2020-12-10', '45', '2');

@@ -57,12 +57,14 @@ public class TuyenXeController {
         }
     }
 
+    //Them tuyen xe.
     @RequestMapping(value = "/tuyenXe/create", method = RequestMethod.POST)
     public ResponseEntity<TuyenXe> createTuyenXe(@RequestBody TuyenXe tuyenXe){
         tuyenXeService.saveTuyenXe(tuyenXe);
         return new ResponseEntity<>(tuyenXe, HttpStatus.CREATED);
     }
 
+    //Sua tuyen xe
     @RequestMapping(value = "/tuyenXe/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<TuyenXe> updateTuyenXe(@PathVariable("id") int id, @RequestBody TuyenXe tuyenXe){
         Optional<TuyenXe> currentTuyenXe = tuyenXeService.getTuyenXeById(id);
@@ -78,9 +80,9 @@ public class TuyenXeController {
         return new ResponseEntity<>(currentTuyenXe.get(), HttpStatus.OK);
     }
 
-    //Xoa tai xe by Id.
+    //Xoa tuyen xe by Id.
     @RequestMapping(value = "/tuyenXe/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<TuyenXe> deleteTuyenXeById(@PathVariable("id") int id){
+    public ResponseEntity deleteTuyenXeById(@PathVariable("id") int id){
         Optional<TuyenXe> currentTuyenXe = tuyenXeService.getTuyenXeById(id);
         //Neu khong ton tai.
         if(!currentTuyenXe.isPresent()){

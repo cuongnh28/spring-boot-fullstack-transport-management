@@ -7,8 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import transport.model.TaiXe;
 import transport.service.TaiXeService;
-import java.util.List;
-
 @Slf4j
 @Controller
 @RequestMapping("/taiXe")

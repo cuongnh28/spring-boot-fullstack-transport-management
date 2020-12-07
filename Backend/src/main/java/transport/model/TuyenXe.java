@@ -2,13 +2,15 @@ package transport.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import net.minidev.json.annotate.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Range;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class TuyenXe {
+public class TuyenXe implements Serializable {
 	@Id
 	@Column(name="tuyenXeId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,10 +73,9 @@ public class TuyenXe {
 	}
 
 	@JsonIgnore
-	private List<ChuyenXe> getListChuyenXe() { return this.listChuyenXe; }
+	public List<ChuyenXe> getListChuyenXe() { return this.listChuyenXe; }
 
-	@JsonIgnore
-	private void setListChuyenXe(List<ChuyenXe> listChuyenXe) {
+	public void setListChuyenXe(List<ChuyenXe> listChuyenXe) {
 		this.listChuyenXe = listChuyenXe;
 	}
 

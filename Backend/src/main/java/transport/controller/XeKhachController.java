@@ -92,7 +92,7 @@ public class XeKhachController {
 
     //Xoa xe khach theo id.
     @RequestMapping(value = "/xeKhach/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<XeKhach> deleteXeKhach(@PathVariable("id") int id){
+    public ResponseEntity deleteXeKhach(@PathVariable("id") int id){
         Optional<XeKhach> xeKhach = xeKhachService.getXeKhachById(id);
         if(!xeKhach.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

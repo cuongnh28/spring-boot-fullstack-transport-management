@@ -1,7 +1,6 @@
 package transport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -90,7 +89,7 @@ public class TaiXeController {
 
     //Xoa tai xe theo id.
     @RequestMapping(value = "/taiXe/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<TaiXe> deleteTaiXe(@PathVariable("id") int id) {
+    public ResponseEntity deleteTaiXe(@PathVariable("id") int id) {
         Optional<TaiXe> taiXe = taiXeService.getTaiXeById(id);
         if (!taiXe.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

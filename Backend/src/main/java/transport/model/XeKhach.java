@@ -1,20 +1,18 @@
 package transport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import net.minidev.json.annotate.JsonIgnore;
 
 @Entity
 //@RequiredArgsConstructor
-public class XeKhach {
+public class XeKhach implements Serializable {
 	@Id
 	@Column(name="xeKhachId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -130,12 +128,11 @@ public class XeKhach {
 	}
 
 	@JsonIgnore
-	private List<ChuyenXe> getListChuyenXe() {
+	public List<ChuyenXe> getListChuyenXe() {
 		return listChuyenXe;
 	}
 
-	@JsonIgnore
-	private void setListChuyenXe(List<ChuyenXe> listChuyenXe) {
+	public void setListChuyenXe(List<ChuyenXe> listChuyenXe) {
 		this.listChuyenXe = listChuyenXe;
 	}
 }

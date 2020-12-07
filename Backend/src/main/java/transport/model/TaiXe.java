@@ -1,5 +1,6 @@
 package transport.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -12,16 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 //@Data Su dung DATA trong intellij bi loi nen get set phai viet lai.
 @Entity
-public class TaiXe {
+public class TaiXe implements Serializable {
 	@Id
 	@Column(name="taiXeId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -43,25 +41,6 @@ public class TaiXe {
 	@OneToMany(mappedBy = "phuXe", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ChuyenXe> listChuyenXePhu; //list chuyen xe ma tai xe lam phu xe.
 
-	@JsonIgnore
-	private List<ChuyenXe> getListChuyenXeLai(){
-		return this.listChuyenXeLai;
-	}
-
-	@JsonIgnore
-	private void setListChuyenXeLai(List<ChuyenXe> listChuyenXeLai){
-		this.listChuyenXeLai = listChuyenXeLai;
-	}
-
-	@JsonIgnore
-	private List<ChuyenXe> getListChuyenXePhu(){
-		return this.listChuyenXePhu;
-	}
-
-	@JsonIgnore
-	private void setListChuyenXePhu(List<ChuyenXe> listChuyenXePhu){
-		this.listChuyenXePhu = listChuyenXePhu;
-	}
 	public TaiXe(){}
 
 	public TaiXe(String ten, String cmt, String maSoBangLai, String loaiBang, String diaChi, Date ngaySinh, int thamNien){
@@ -147,5 +126,23 @@ public class TaiXe {
 
 	public void setThamNien(int thamNien) {
 		this.thamNien = thamNien;
+	}
+
+	@JsonIgnore
+	public List<ChuyenXe> getListChuyenXeLai(){
+		return this.listChuyenXeLai;
+	}
+
+	public void setListChuyenXeLai(List<ChuyenXe> listChuyenXeLai){
+		this.listChuyenXeLai = listChuyenXeLai;
+	}
+
+	@JsonIgnore
+	public List<ChuyenXe> getListChuyenXePhu(){
+		return this.listChuyenXePhu;
+	}
+
+	public void setListChuyenXePhu(List<ChuyenXe> listChuyenXePhu){
+		this.listChuyenXePhu = listChuyenXePhu;
 	}
 }
