@@ -16,7 +16,7 @@ public class XeKhach implements Serializable {
 	@Id
 	@Column(name="xeKhachId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int xeKhachId;
+	private Long xeKhachId;
 	@NotNull
 	private String bienSo;
 	private String mauXe;
@@ -32,7 +32,7 @@ public class XeKhach implements Serializable {
 
 	public XeKhach(){}
 
-	public XeKhach(int xeKhachId, String bienSo, String mauXe, String hangSanXuat, int doiXe, String model, int soGhe, int soNamSuDung, Date ngayBaoDuong){
+	public XeKhach(Long xeKhachId, String bienSo, String mauXe, String hangSanXuat, int doiXe, String model, int soGhe, int soNamSuDung, Date ngayBaoDuong){
 		this.xeKhachId = xeKhachId;
 		this.bienSo = bienSo;
 		this.mauXe = mauXe;
@@ -44,22 +44,11 @@ public class XeKhach implements Serializable {
 		this.ngayBaoDuong = ngayBaoDuong;
 	}
 
-	public XeKhach(String bienSo, String mauXe, String hangSanXuat, int doiXe, String model, int soGhe, int soNamSuDung, Date ngayBaoDuong){
-		this.bienSo = bienSo;
-		this.mauXe = mauXe;
-		this.hangSanXuat = hangSanXuat;
-		this.doiXe = doiXe;
-		this.model = model;
-		this.soGhe = soGhe;
-		this.soNamSuDung = soNamSuDung;
-		this.ngayBaoDuong = ngayBaoDuong;
-	}
-
-	public int getXeKhachId() {
+	public Long getXeKhachId() {
 		return xeKhachId;
 	}
 
-	public void setXeKhachId(int xeKhachId) {
+	public void setXeKhachId(Long xeKhachId) {
 		this.xeKhachId = xeKhachId;
 	}
 
@@ -132,6 +121,7 @@ public class XeKhach implements Serializable {
 		return listChuyenXe;
 	}
 
+	@JsonIgnore
 	public void setListChuyenXe(List<ChuyenXe> listChuyenXe) {
 		this.listChuyenXe = listChuyenXe;
 	}

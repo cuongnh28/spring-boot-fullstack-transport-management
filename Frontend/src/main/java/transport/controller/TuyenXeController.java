@@ -21,7 +21,7 @@ public class TuyenXeController {
     }
 
     @GetMapping("/{id}")
-    public String getTuyenXeById(@PathVariable ("id") int id, Model model){
+    public String getTuyenXeById(@PathVariable ("id") Long id, Model model){
         TuyenXe tuyenXe = tuyenXeService.getTuyenXeById(id);
         model.addAttribute("tuyenXe", tuyenXe);
         return "TuyenXe/infoTuyenXe";
@@ -53,20 +53,20 @@ public class TuyenXeController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editTuyenXe(@PathVariable ("id") int id, Model model){
+    public String editTuyenXe(@PathVariable ("id") Long id, Model model){
         TuyenXe tuyenXe = tuyenXeService.getTuyenXeById(id);
         model.addAttribute("tuyenXe", tuyenXe);
         return "TuyenXe/editTuyenXe";
     }
 
     @PostMapping("/update/{id}")
-    public String updateTuyenXe(@PathVariable ("id") int id, TuyenXe tuyenXe){
+    public String updateTuyenXe(@PathVariable ("id") Long id, TuyenXe tuyenXe){
         tuyenXeService.updateTuyenXe(tuyenXe, id);
         return "redirect:/tuyenXe/{id}";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteTuyenXe(@PathVariable ("id") int id){
+    public String deleteTuyenXe(@PathVariable ("id") Long id){
         tuyenXeService.deleteTuyenXe(id);
         return "redirect:/tuyenXe";
     }

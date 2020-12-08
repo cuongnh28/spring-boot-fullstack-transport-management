@@ -28,12 +28,12 @@ public class TuyenXeServiceImpl implements TuyenXeService {
     }
 
     @Override
-    public void deleteTuyenXe(int id) {
+    public void deleteTuyenXe(Long id) {
         tuyenXeRepo.deleteById(id);
     }
 
     @Override
-    public Optional<TuyenXe> getTuyenXeById(int id) {
+    public Optional<TuyenXe> getTuyenXeById(Long id) {
         return tuyenXeRepo.findById(id);
     }
 

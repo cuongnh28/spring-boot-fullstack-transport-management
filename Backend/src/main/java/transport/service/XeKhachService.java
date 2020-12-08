@@ -9,8 +9,8 @@ import java.util.Optional;
 public interface XeKhachService {
     List<XeKhach> getAllXeKhach();
     void saveXeKhach(XeKhach xeKhach);
-    void deleteXeKhach(int id);
-    Optional<XeKhach> getXeKhachById(int id);
+    void deleteXeKhach(Long id);
+    Optional<XeKhach> getXeKhachById(Long id);
     List<XeKhach> searchXeKhachByKeyword(String keyword);
     boolean checkTonTai(String bienSo);
 }

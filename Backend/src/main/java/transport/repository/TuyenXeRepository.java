@@ -7,7 +7,7 @@ import transport.model.TuyenXe;
 import java.util.List;
 
 @Repository
-public interface TuyenXeRepository extends JpaRepository<TuyenXe, Integer> {
+public interface TuyenXeRepository extends JpaRepository<TuyenXe, Long> {
     @Query("SELECT tuyenXe FROM TuyenXe tuyenXe WHERE tuyenXe.diemDau LIKE %?1% OR tuyenXe.diemCuoi LIKE %?1%")
     public List<TuyenXe> searchTuyenXeByKeyWord(String keyword);
 }

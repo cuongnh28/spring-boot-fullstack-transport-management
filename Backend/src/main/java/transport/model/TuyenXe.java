@@ -14,7 +14,7 @@ public class TuyenXe implements Serializable {
 	@Id
 	@Column(name="tuyenXeId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int tuyenXeId;
+	private Long tuyenXeId;
 	@NotNull
 	private String diemDau;
 	@NotNull
@@ -27,24 +27,18 @@ public class TuyenXe implements Serializable {
 
 	public TuyenXe(){}
 
-	public TuyenXe(int taiXeId, String diemDau, String diemCuoi, int doPhucTap){
+	public TuyenXe(Long taiXeId, String diemDau, String diemCuoi, int doPhucTap){
 		this.tuyenXeId = taiXeId;
 		this.diemDau = diemDau;
 		this.diemCuoi = diemCuoi;
 		this.doPhucTap = doPhucTap;
 	}
 
-	public TuyenXe(String diemDau, String diemCuoi, int doPhucTap){
-		this.diemDau = diemDau;
-		this.diemCuoi = diemCuoi;
-		this.doPhucTap = doPhucTap;
-	}
-
-	public int getTuyenXeId() {
+	public Long getTuyenXeId() {
 		return tuyenXeId;
 	}
 
-	public void setTuyenXeId(int tuyenXeId) {
+	public void setTuyenXeId(Long tuyenXeId) {
 		this.tuyenXeId = tuyenXeId;
 	}
 
@@ -75,6 +69,7 @@ public class TuyenXe implements Serializable {
 	@JsonIgnore
 	public List<ChuyenXe> getListChuyenXe() { return this.listChuyenXe; }
 
+	@JsonIgnore
 	public void setListChuyenXe(List<ChuyenXe> listChuyenXe) {
 		this.listChuyenXe = listChuyenXe;
 	}

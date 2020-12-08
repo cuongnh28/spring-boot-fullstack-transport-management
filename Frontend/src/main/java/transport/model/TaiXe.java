@@ -2,7 +2,7 @@ package transport.model;
 import java.sql.Date;
 
 public class TaiXe {
-	private int taiXeId;
+	private Long taiXeId;
 	private String ten;
 	private String cmt;
 	private String maSoBangLai;
@@ -23,7 +23,7 @@ public class TaiXe {
 		this.thamNien = thamNien;
 	}
 
-	public TaiXe(int taiXeId, String ten, String cmt, String maSoBangLai, String loaiBang, String diaChi, Date ngaySinh, int thamNien){
+	public TaiXe(Long taiXeId, String ten, String cmt, String maSoBangLai, String loaiBang, String diaChi, Date ngaySinh, int thamNien){
 		this.taiXeId = taiXeId;
 		this.ten = ten;
 		this.cmt = cmt;
@@ -34,11 +34,11 @@ public class TaiXe {
 		this.thamNien = thamNien;
 	}
 
-	public int getTaiXeId() {
+	public Long getTaiXeId() {
 		return taiXeId;
 	}
 
-	public void setTaiXeId(int taiXeId) {
+	public void setTaiXeId(Long taiXeId) {
 		this.taiXeId = taiXeId;
 	}
 

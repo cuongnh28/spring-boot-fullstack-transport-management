@@ -35,7 +35,7 @@ public class TuyenXeController {
 
     //Lay tuyenxe theo Id.
     @RequestMapping(value = "/tuyenXe/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TuyenXe> getTaiXeById(@PathVariable("id") int id){
+    public ResponseEntity<TuyenXe> getTaiXeById(@PathVariable("id") Long id){
         Optional<TuyenXe> tuyenXe = tuyenXeService.getTuyenXeById(id);
         if(!tuyenXe.isPresent()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -66,7 +66,7 @@ public class TuyenXeController {
 
     //Sua tuyen xe
     @RequestMapping(value = "/tuyenXe/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<TuyenXe> updateTuyenXe(@PathVariable("id") int id, @RequestBody TuyenXe tuyenXe){
+    public ResponseEntity<TuyenXe> updateTuyenXe(@PathVariable("id") Long id, @RequestBody TuyenXe tuyenXe){
         Optional<TuyenXe> currentTuyenXe = tuyenXeService.getTuyenXeById(id);
 
         if(!currentTuyenXe.isPresent()){
@@ -82,7 +82,7 @@ public class TuyenXeController {
 
     //Xoa tuyen xe by Id.
     @RequestMapping(value = "/tuyenXe/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteTuyenXeById(@PathVariable("id") int id){
+    public ResponseEntity deleteTuyenXeById(@PathVariable("id") Long id){
         Optional<TuyenXe> currentTuyenXe = tuyenXeService.getTuyenXeById(id);
         //Neu khong ton tai.
         if(!currentTuyenXe.isPresent()){

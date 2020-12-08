@@ -15,11 +15,11 @@ import lombok.*;
 
 @Entity
 public class ChuyenXe implements Serializable {
+
 	@Id
 	@Column(name="chuyenXeId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int chuyenXeId;
-
+	private Long chuyenXeId;
 	@NonNull
 	private int soKhach;
 	@NonNull
@@ -44,7 +44,7 @@ public class ChuyenXe implements Serializable {
 
 	public ChuyenXe(){}
 
-	public ChuyenXe(int chuyenXeId, int soKhach, int giaVe, Date ngayDi, TaiXe laiXe, TaiXe phuXe, TuyenXe tuyenXe, XeKhach xeKhach){
+	public ChuyenXe(Long chuyenXeId, int soKhach, int giaVe, Date ngayDi, TaiXe laiXe, TaiXe phuXe, TuyenXe tuyenXe, XeKhach xeKhach){
 		this.chuyenXeId = chuyenXeId;
 		this.soKhach = soKhach;
 		this.giaVe = giaVe;
@@ -55,21 +55,11 @@ public class ChuyenXe implements Serializable {
 		this.xeKhach = xeKhach;
 	}
 
-	public ChuyenXe(int soKhach, int giaVe, Date ngayDi, TaiXe laiXe, TaiXe phuXe, TuyenXe tuyenXe, XeKhach xeKhach){
-		this.soKhach = soKhach;
-		this.giaVe = giaVe;
-		this.ngayDi = ngayDi;
-		this.laiXe = laiXe;
-		this.phuXe = phuXe;
-		this.tuyenXe = tuyenXe;
-		this.xeKhach = xeKhach;
-	}
-
-	public int getChuyenXeId() {
+	public Long getChuyenXeId() {
 		return chuyenXeId;
 	}
 
-	public void setChuyenXeId(int chuyenXeId) {
+	public void setChuyenXeId(Long chuyenXeId) {
 		this.chuyenXeId = chuyenXeId;
 	}
 
@@ -133,36 +123,26 @@ public class ChuyenXe implements Serializable {
 		this.tuyenXe = tuyenXe;
 	}
 
-	public int getLaiXeId() {
+	public Long getLaiXeId() {
 		return laiXe.getTaiXeId();
 	}
 
-//	public void setLaiXeId(int laiXeId){
-//		this.laiXe.setTaiXeId(laiXeId);
-//	}
-
-	public int getPhuXeId() {
+	public Long getPhuXeId() {
 		return phuXe.getTaiXeId();
 	}
 
-//	public void setPhuXeId(int phuXeId){
-//		this.phuXe.setTaiXeId(phuXeId);
-//	}
-
-	public int getXeKhachId() {
+	public Long getXeKhachId() {
 		return xeKhach.getXeKhachId();
 	}
 
-//	public void setXeKhachId(int xeKhachId){
-//		this.xeKhach.setXeKhachId(xeKhachId);
-//	}
-
-	public int getTuyenXeId() {
+	public Long getTuyenXeId() {
 		return tuyenXe.getTuyenXeId();
 	}
 
-//	public void setTuyenXeId(int tuyenXeId){
-//		this.tuyenXe.setTuyenXeId(tuyenXeId);
-//	}
+	public String getTenLaiXe(){ return laiXe.getTen(); }
+
+	public String getTenPhuXe() { return phuXe.getTen(); }
+
+	public String getBienSoXe() { return xeKhach.getBienSo(); }
 
 }

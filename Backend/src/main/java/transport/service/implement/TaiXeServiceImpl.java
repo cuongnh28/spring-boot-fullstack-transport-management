@@ -29,12 +29,12 @@ public class TaiXeServiceImpl implements TaiXeService {
     }
 
     @Override
-    public void deleteTaiXe(int id) {
+    public void deleteTaiXe(Long id) {
         taiXeRepo.deleteById(id);
     }
 
     @Override
-    public Optional<TaiXe> getTaiXeById(int id) {
+    public Optional<TaiXe> getTaiXeById(Long id) {
         return taiXeRepo.findById(id);
     }
 

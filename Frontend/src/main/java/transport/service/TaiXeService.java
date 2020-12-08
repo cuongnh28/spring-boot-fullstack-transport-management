@@ -11,8 +11,8 @@ public class TaiXeService {
     RestTemplate restTemplate = new RestTemplate();
 
     //Get
-    public TaiXe getTaiXeById(int id){
-        System.out.println("Tets API get theo ID");
+    public TaiXe getTaiXeById(Long id){
+//        System.out.println("Tets API get theo ID");
         TaiXe taiXe = restTemplate.getForObject(REST_SERVICE_URI + id, TaiXe.class);
         return taiXe;
     }
@@ -34,19 +34,19 @@ public class TaiXeService {
     //Post
     public void createTaiXe(TaiXe taiXe){
         System.out.println("Test API them tai xe.");
-        restTemplate.postForLocation(REST_SERVICE_URI+"create", taiXe, TaiXe.class);
+        restTemplate.postForObject(REST_SERVICE_URI+"create", taiXe, TaiXe.class);
     }
 
     //Put
-    public void updateTaiXe(TaiXe taiXe, int id){
+    public void updateTaiXe(TaiXe taiXe, Long id){
         System.out.println("Test API sua tai xe.");
-        taiXe.setTaiXeId(id);
-        restTemplate.put(REST_SERVICE_URI+"update/"+id, taiXe);
+//        taiXe.setTaiXeId(id);
+        restTemplate.put(REST_SERVICE_URI+"update/"+id, taiXe, TaiXe.class);
         System.out.println(taiXe);
     }
 
     //Delete
-    public void deleteTaiXe(int id){
+    public void deleteTaiXe(Long id){
         restTemplate.delete(REST_SERVICE_URI+"delete/"+id);
     }
 }

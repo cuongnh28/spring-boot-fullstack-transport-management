@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Range;
 
 public class TuyenXe {
 
-	private int tuyenXeId;
+	private Long tuyenXeId;
 	private String diemDau;
 	private String diemCuoi;
 	@Range(min = 1, max =3)
@@ -12,7 +12,7 @@ public class TuyenXe {
 
 	public TuyenXe(){}
 
-	public TuyenXe(int taiXeId, String diemDau, String diemCuoi, int doPhucTap){
+	public TuyenXe(Long taiXeId, String diemDau, String diemCuoi, int doPhucTap){
 		this.tuyenXeId = taiXeId;
 		this.diemDau = diemDau;
 		this.diemCuoi = diemCuoi;
@@ -25,11 +25,11 @@ public class TuyenXe {
 		this.doPhucTap = doPhucTap;
 	}
 
-	public int getTuyenXeId() {
+	public Long getTuyenXeId() {
 		return tuyenXeId;
 	}
 
-	public void setTuyenXeId(int tuyenXeId) {
+	public void setTuyenXeId(Long tuyenXeId) {
 		this.tuyenXeId = tuyenXeId;
 	}
 

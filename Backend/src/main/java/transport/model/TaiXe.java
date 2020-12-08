@@ -23,7 +23,7 @@ public class TaiXe implements Serializable {
 	@Id
 	@Column(name="taiXeId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int taiXeId;
+	private Long taiXeId;
 //	@Size(min = 5, message = "Name must be at least 5 characters long")
 	private String ten;
 	@NotNull
@@ -43,17 +43,7 @@ public class TaiXe implements Serializable {
 
 	public TaiXe(){}
 
-	public TaiXe(String ten, String cmt, String maSoBangLai, String loaiBang, String diaChi, Date ngaySinh, int thamNien){
-		this.ten = ten;
-		this.cmt = cmt;
-		this.maSoBangLai = maSoBangLai;
-		this.loaiBang = loaiBang;
-		this.diaChi = diaChi;
-		this.ngaySinh = ngaySinh;
-		this.thamNien = thamNien;
-	}
-
-	public TaiXe(int taiXeId, String ten, String cmt, String maSoBangLai, String loaiBang, String diaChi, Date ngaySinh, int thamNien){
+	public TaiXe(Long taiXeId, String ten, String cmt, String maSoBangLai, String loaiBang, String diaChi, Date ngaySinh, int thamNien){
 		this.taiXeId = taiXeId;
 		this.ten = ten;
 		this.cmt = cmt;
@@ -64,11 +54,11 @@ public class TaiXe implements Serializable {
 		this.thamNien = thamNien;
 	}
 
-	public int getTaiXeId() {
+	public Long getTaiXeId() {
 		return taiXeId;
 	}
 
-	public void setTaiXeId(int taiXeId) {
+	public void setTaiXeId(Long taiXeId) {
 		this.taiXeId = taiXeId;
 	}
 

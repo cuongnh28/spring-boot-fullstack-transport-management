@@ -20,7 +20,7 @@ public class XeKhachController {
         this.xeKhachService = xeKhachService;
     }
     @GetMapping("/{id}")
-    public String getXeKhachById(@PathVariable("id") int id, Model model){
+    public String getXeKhachById(@PathVariable("id") Long id, Model model){
         XeKhach xeKhach = xeKhachService.getXeKhachById(id);
         model.addAttribute("xeKhach", xeKhach);
         return "XeKhach/infoXeKhach";
@@ -50,7 +50,7 @@ public class XeKhachController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editXeKhach(@PathVariable("id") int id, Model model){
+    public String editXeKhach(@PathVariable("id") Long id, Model model){
         XeKhach xeKhach = xeKhachService.getXeKhachById(id);
         xeKhach.setXeKhachId(id);
         model.addAttribute(xeKhach);
@@ -58,13 +58,13 @@ public class XeKhachController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateXeKhach(@PathVariable("id") int id, XeKhach xeKhach){
+    public String updateXeKhach(@PathVariable("id") Long id, XeKhach xeKhach){
         xeKhachService.updateXeKhach(xeKhach, id);
         return "redirect:/xeKhach/{id}";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteXeKhach(@PathVariable("id") int id){
+    public String deleteXeKhach(@PathVariable("id") Long id){
         XeKhach xeKhach = xeKhachService.getXeKhachById(id);
         xeKhachService.deleteXeKhach(id);
         return "redirect:/xeKhach";

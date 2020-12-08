@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class XeKhachImpl implements XeKhachService {
+public class XeKhachServiceImpl implements XeKhachService {
     private XeKhachRepository xeKhachRepo;
     @Autowired
-    public XeKhachImpl(XeKhachRepository xeKhachRepo){
+    public XeKhachServiceImpl(XeKhachRepository xeKhachRepo){
         this.xeKhachRepo = xeKhachRepo;
     }
 
@@ -28,12 +28,12 @@ public class XeKhachImpl implements XeKhachService {
     }
 
     @Override
-    public void deleteXeKhach(int id) {
+    public void deleteXeKhach(Long id) {
         xeKhachRepo.deleteById(id);
     }
 
     @Override
-    public Optional<XeKhach> getXeKhachById(int id) {
+    public Optional<XeKhach> getXeKhachById(Long id) {
         return xeKhachRepo.findById(id);
     }
 

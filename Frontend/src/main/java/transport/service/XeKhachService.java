@@ -12,7 +12,7 @@ public class XeKhachService {
     RestTemplate restTemplate = new RestTemplate();
 
     //Get
-    public XeKhach getXeKhachById(int id){
+    public XeKhach getXeKhachById(Long id){
         XeKhach xeKhach = restTemplate.getForObject(REST_SERVICE_URI + id, XeKhach.class);
         return xeKhach;
     }
@@ -35,14 +35,14 @@ public class XeKhachService {
     }
 
     //Put
-    public void updateXeKhach(XeKhach xeKhach, int id){
+    public void updateXeKhach(XeKhach xeKhach, Long id){
         xeKhach.setXeKhachId(id);
         restTemplate.put(REST_SERVICE_URI+"update/"+id, xeKhach);
-        System.out.println(xeKhach);
+//        System.out.println(xeKhach);
     }
 
     //Delete
-    public void deleteXeKhach(int id){
+    public void deleteXeKhach(Long id){
         restTemplate.delete(REST_SERVICE_URI+"delete/"+id);
     }
 }

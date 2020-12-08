@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface TuyenXeService {
     List<TuyenXe> getAllTuyenXe();
     void saveTuyenXe(TuyenXe tuyenXe);
-    void deleteTuyenXe(int id);
-    Optional<TuyenXe> getTuyenXeById(int id);
+    void deleteTuyenXe(Long id);
+    Optional<TuyenXe> getTuyenXeById(Long id);
     List<TuyenXe> searchTuyenXeByKeyWord(String keyword);
 }

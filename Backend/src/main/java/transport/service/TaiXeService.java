@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface TaiXeService {
     List<TaiXe> getAllTaiXe();
     void saveTaiXe(TaiXe taiXe);
-    void deleteTaiXe(int id);
-    Optional<TaiXe> getTaiXeById(int id);
+    void deleteTaiXe(Long id);
+    Optional<TaiXe> getTaiXeById(Long id);
     List<TaiXe> searchTaiXeByKeyword(String keyword);
     boolean checkTonTai(String cmt, String maSoBangLai);
 }

@@ -8,7 +8,7 @@ import transport.model.XeKhach;
 import java.util.List;
 
 @Repository
-public interface XeKhachRepository extends JpaRepository<XeKhach, Integer> {
+public interface XeKhachRepository extends JpaRepository<XeKhach, Long> {
     //Tim kiem boi bien so.
     @Query("SELECT xeKhach FROM XeKhach xeKhach WHERE xeKhach.bienSo LIKE %?1%")
     public List<XeKhach> searchXeKhachByKeyword(String keyword);

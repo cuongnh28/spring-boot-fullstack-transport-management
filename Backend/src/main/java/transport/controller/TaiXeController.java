@@ -33,7 +33,7 @@ public class TaiXeController {
 
     //Lay tai xe theo Id.
     @RequestMapping(value = "/taiXe/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TaiXe> getTaiXeById(@PathVariable("id") int id) {
+    public ResponseEntity<TaiXe> getTaiXeById(@PathVariable("id") Long id) {
         Optional<TaiXe> taiXe = taiXeService.getTaiXeById(id);
         if (!taiXe.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -53,7 +53,7 @@ public class TaiXeController {
 
     //Them tai xe.
     @RequestMapping(value = "/taiXe/create", method = RequestMethod.POST)
-    public ResponseEntity<TaiXe> createTaiXe(@RequestBody TaiXe taiXe, UriComponentsBuilder builder) {
+    public ResponseEntity<TaiXe> createTaiXe(@RequestBody TaiXe taiXe) {
         String cmt = taiXe.getCmt();
         String maSoBangLai = taiXe.getMaSoBangLai();
         if(taiXeService.checkTonTai(cmt,maSoBangLai)){
@@ -67,7 +67,7 @@ public class TaiXeController {
 
     //Sua tai xe.
     @RequestMapping(value = "/taiXe/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<TaiXe> updateTaiXe(@PathVariable("id") Integer id, @RequestBody TaiXe taiXe) {
+    public ResponseEntity<TaiXe> updateTaiXe(@PathVariable("id") Long id, @RequestBody TaiXe taiXe) {
         Optional<TaiXe> currentTaiXe = taiXeService.getTaiXeById(id);
 
         if (!currentTaiXe.isPresent()) {
@@ -89,7 +89,7 @@ public class TaiXeController {
 
     //Xoa tai xe theo id.
     @RequestMapping(value = "/taiXe/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteTaiXe(@PathVariable("id") int id) {
+    public ResponseEntity deleteTaiXe(@PathVariable("id") Long id) {
         Optional<TaiXe> taiXe = taiXeService.getTaiXeById(id);
         if (!taiXe.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

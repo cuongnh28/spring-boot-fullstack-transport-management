@@ -12,7 +12,7 @@ public class TuyenXeService {
     private String REST_SERVICE_URI = "http://localhost:8080/tuyenXe/";
 
     //Get
-    public TuyenXe getTuyenXeById(int id){
+    public TuyenXe getTuyenXeById(Long id){
         TuyenXe tuyenXe = restTemplate.getForObject(REST_SERVICE_URI + id, TuyenXe.class);
         return tuyenXe;
     }
@@ -35,13 +35,13 @@ public class TuyenXeService {
     }
 
     //Put
-    public void updateTuyenXe(TuyenXe tuyenXe, int id){
+    public void updateTuyenXe(TuyenXe tuyenXe, Long id){
         tuyenXe.setTuyenXeId(id);
         restTemplate.put(REST_SERVICE_URI + "update/" + id, tuyenXe);
     }
 
     //Delete
-    public void deleteTuyenXe(int id){
+    public void deleteTuyenXe(Long id){
         restTemplate.delete(REST_SERVICE_URI + "delete/" + id);
     }
 }

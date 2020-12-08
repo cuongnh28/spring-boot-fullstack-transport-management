@@ -9,7 +9,7 @@ import transport.model.TaiXe;
 import java.util.List;
 
 @Repository
-public interface TaiXeRepository extends JpaRepository<TaiXe, Integer> {
+public interface TaiXeRepository extends JpaRepository<TaiXe, Long> {
     @Query("SELECT taiXe FROM TaiXe taiXe WHERE taiXe.ten LIKE %?1%")
     public List<TaiXe> searchTaiXeByKeyword(String keyword);
 

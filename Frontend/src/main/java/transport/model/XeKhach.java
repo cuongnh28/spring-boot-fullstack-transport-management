@@ -4,7 +4,7 @@ package transport.model;
 import java.sql.Date;
 
 public class XeKhach {
-	private int xeKhachId;
+	private Long xeKhachId;
 	private String bienSo;
 	private String mauXe;
 	private String hangSanXuat;
@@ -16,7 +16,7 @@ public class XeKhach {
 
 	public XeKhach(){}
 
-	public XeKhach(int xeKhachId, String bienSo, String mauXe, String hangSanXuat, int doiXe, String model, int soGhe, int soNamSuDung, Date ngayBaoDuong){
+	public XeKhach(Long xeKhachId, String bienSo, String mauXe, String hangSanXuat, int doiXe, String model, int soGhe, int soNamSuDung, Date ngayBaoDuong){
 		this.xeKhachId = xeKhachId;
 		this.bienSo = bienSo;
 		this.mauXe = mauXe;
@@ -39,11 +39,11 @@ public class XeKhach {
 		this.ngayBaoDuong = ngayBaoDuong;
 	}
 
-	public int getXeKhachId() {
+	public Long getXeKhachId() {
 		return xeKhachId;
 	}
 
-	public void setXeKhachId(int xeKhachId) {
+	public void setXeKhachId(Long xeKhachId) {
 		this.xeKhachId = xeKhachId;
 	}
 

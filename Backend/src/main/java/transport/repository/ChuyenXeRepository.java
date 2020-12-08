@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import transport.model.ChuyenXe;
 
 @Repository
-public interface ChuyenXeRepository extends JpaRepository<ChuyenXe, Integer> {
+public interface ChuyenXeRepository extends JpaRepository<ChuyenXe, Long> {
 }

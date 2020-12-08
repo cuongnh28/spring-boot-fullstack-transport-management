@@ -34,7 +34,7 @@ public class XeKhachController {
 
     //Lay xe khach theo id.
     @RequestMapping(value = "/xeKhach/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<XeKhach> getXeKhachById(@PathVariable("id") int id){
+    public ResponseEntity<XeKhach> getXeKhachById(@PathVariable("id") Long id){
         Optional<XeKhach> xeKhach = xeKhachService.getXeKhachById(id);
         if(!xeKhach.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -70,7 +70,7 @@ public class XeKhachController {
 
     //Sua xe khach.
     @RequestMapping(value = "/xeKhach/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<XeKhach> updateXeKhach(@RequestBody XeKhach xeKhach, @PathVariable("id") int id){
+    public ResponseEntity<XeKhach> updateXeKhach(@RequestBody XeKhach xeKhach, @PathVariable("id") Long id){
         Optional<XeKhach> currentXeKhach = xeKhachService.getXeKhachById(id);
         if(!currentXeKhach.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -92,7 +92,7 @@ public class XeKhachController {
 
     //Xoa xe khach theo id.
     @RequestMapping(value = "/xeKhach/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteXeKhach(@PathVariable("id") int id){
+    public ResponseEntity deleteXeKhach(@PathVariable("id") Long id){
         Optional<XeKhach> xeKhach = xeKhachService.getXeKhachById(id);
         if(!xeKhach.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
