@@ -1,6 +1,5 @@
 package transport.model;
 
-
 import java.sql.Date;
 
 public class XeKhach {
@@ -12,7 +11,8 @@ public class XeKhach {
 	private String model;
 	private int soGhe;
 	private int soNamSuDung;
-	private Date ngayBaoDuong;
+	private Date ngayBaoDuong; //ngay bao duong truoc do.
+	private String ngayBaoDuongTiepTheo; //ngay bao duong tiep theo.
 
 	public XeKhach(){}
 
@@ -110,4 +110,5 @@ public class XeKhach {
 	public void setNgayBaoDuong(Date ngayBaoDuong) {
 		this.ngayBaoDuong = ngayBaoDuong;
 	}
+
 }

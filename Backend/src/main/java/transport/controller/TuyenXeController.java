@@ -75,6 +75,7 @@ public class TuyenXeController {
 
         currentTuyenXe.get().setDiemDau(tuyenXe.getDiemDau());
         currentTuyenXe.get().setDiemCuoi(tuyenXe.getDiemCuoi());
+        currentTuyenXe.get().setQuangDuong(tuyenXe.getQuangDuong());
         currentTuyenXe.get().setDoPhucTap(tuyenXe.getDoPhucTap());
         tuyenXeService.saveTuyenXe(currentTuyenXe.get());
         return new ResponseEntity<>(currentTuyenXe.get(), HttpStatus.OK);

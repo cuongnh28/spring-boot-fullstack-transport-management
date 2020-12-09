@@ -4,14 +4,29 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
-//@RequiredArgsConstructor
+//Tinh doanh thu xe khach theo yeu cau nang cao.
+@SqlResultSetMapping(
+		name = "DoanhThuResult",
+		classes = {
+				@ConstructorResult(
+						targetClass = DoanhThuXeKhach.class,
+						columns = {
+								@ColumnResult(name = "xe_khach_id", type = Long.class),
+								@ColumnResult(name = "bien_so", type = String.class),
+								@ColumnResult(name = "doanh_thu", type = Float.class)
+						}
+				)
+		}
+)
 public class XeKhach implements Serializable {
 	@Id
 	@Column(name="xeKhachId")
@@ -29,6 +44,8 @@ public class XeKhach implements Serializable {
 	private Date ngayBaoDuong;
 	@OneToMany(mappedBy = "xeKhach", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ChuyenXe> listChuyenXe;
+	@Transient
+	private String ngayBaoDuongTiepTheo;
 
 	public XeKhach(){}
 
@@ -125,4 +142,47 @@ public class XeKhach implements Serializable {
 	public void setListChuyenXe(List<ChuyenXe> listChuyenXe) {
 		this.listChuyenXe = listChuyenXe;
 	}
+
+	public String getNgayBaoDuongTiepTheo(){
+		Date ngayBdTiepTheo = addDays(ngayBaoDuong, 360);
+		for(ChuyenXe chuyenXe:listChuyenXe){
+			//Neu he so kho la 2 thi * 1.2 con neu la 3 thi * 1.5
+			int heSoKho = 100;
+			if(chuyenXe.getTuyenXe().getDoPhucTap() == 2){
+				heSoKho *= 1.2;
+			}
+			else if(chuyenXe.getTuyenXe().getDoPhucTap() == 3){
+				heSoKho *= 1.5;
+			}
+			//Ngay bao duong tiep theo se bang ngay dung han tru di quangduong/heSoKho.
+			ngayBdTiepTheo = subtractDays(ngayBdTiepTheo, chuyenXe.getTuyenXe().getQuangDuong()/heSoKho);
+		}
+		if(ngayBdTiepTheo.compareTo(new Date(System.currentTimeMillis())) > 0){
+			ngayBaoDuongTiepTheo = "Đã quá hạn bảo dưỡng";
+		}
+		else{
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+			ngayBaoDuongTiepTheo = dateFormat.format(ngayBdTiepTheo);
+		}
+		return ngayBaoDuongTiepTheo;
+	}
+
+	//Ham cong ngay.
+	@JsonIgnore
+	public static Date addDays(Date date, int days) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, days);
+		return new Date(c.getTimeInMillis());
+    }
+
+    //Ham tru ngay.
+	@JsonIgnore
+	public static Date subtractDays(Date date, int days) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, -days);
+		return new Date(c.getTimeInMillis());
+	}
+
 }

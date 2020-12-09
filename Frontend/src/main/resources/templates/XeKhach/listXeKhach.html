@@ -32,6 +32,7 @@
                     <th>ID</th>
                     <th>Biển số</th>
                     <th>Màu</th>
+                    <th>Ngày bảo dưỡng tới</th>
                     <th>Action</th>
                     <th>Action</th>
                 </tr>
@@ -41,6 +42,7 @@
                     <td><a th:href="'xeKhach/' + ${xeKhach.xeKhachId}" th:text="${xeKhach.xeKhachId}"></a></td>
                     <td th:text="${xeKhach.bienSo}"></td>
                     <td th:text="${xeKhach.mauXe}"></td>
+                    <td th:text="${xeKhach.ngayBaoDuongTiepTheo}"></td>
                     <td><a class="btn btn-warning" th:href="'xeKhach/edit/'+${xeKhach.xeKhachId}" th:text="Sửa"></a></td>
                     <td><a class="btn btn-danger" th:href="'xeKhach/delete/'+${xeKhach.xeKhachId}" th:text="Xóa"></a></td>
                 </tr>

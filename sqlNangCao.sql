@@ -21,11 +21,11 @@ where 	(year(cx.ngay_di) = 2020 and month(cx.ngay_di) = 12)
 group by tx.tai_xe_id;
 
 -- Tinh doanh thu xe khach.
+use transportationmanagementsystem;
 select xe.xe_khach_id, xe.bien_so, ifnull(sum(cx.so_khach * cx.gia_ve), 0) as doanhThu
 from xe_khach xe
-left join chuyen_xe cx on xe.xe_khach_id = cx.xe_khach_id
-group by xe.xe_khach_id;
-
+left join chuyen_xe cx on xe.xe_khach_id = cx.xe_khach_id where cx.ngay_di between '1999-10-01' and '2021-12-20'
+group by xe.xe_khach_id order by doanhThu;
 
 -- Nháp
 select *

@@ -14,17 +14,20 @@ import transport.service.XeKhachService;
 @RequestMapping("/xeKhach")
 @Controller
 public class XeKhachController {
+
     XeKhachService xeKhachService;
     @Autowired
     public XeKhachController(XeKhachService xeKhachService){
         this.xeKhachService = xeKhachService;
     }
+
     @GetMapping("/{id}")
     public String getXeKhachById(@PathVariable("id") Long id, Model model){
         XeKhach xeKhach = xeKhachService.getXeKhachById(id);
         model.addAttribute("xeKhach", xeKhach);
         return "XeKhach/infoXeKhach";
     }
+
     @GetMapping
     public String getAllXeKhach(Model model, String keyword){
         //Neu khong co keyword thi hien thi toan bo, con neu co thi hien thi theo keyword.

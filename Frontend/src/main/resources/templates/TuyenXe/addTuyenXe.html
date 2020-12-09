@@ -16,7 +16,11 @@
             <form method="post" action="/tuyenXe/store" th:action="@{/tuyenXe/store}">
                 <input type="text" name="diemDau" placeholder="Điểm đầu" required/>
                 <input type="text" name="diemCuoi" placeholder="Điểm cuối" required/>
-                <input type="text" name="doPhucTap" placeholder="Độ phức tạp" required/>
+                <select name="doPhucTap">
+                    <option th:value=1 th:text="1"></option>
+                    <option th:value=2 th:text="2"></option>
+                    <option th:value=3 th:text="3"></option>
+                </select>
                 <input type="submit" name="submit" class="btn btn-success" value="Thêm"/>
             </form>
         </div>

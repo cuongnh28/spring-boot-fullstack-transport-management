@@ -5,15 +5,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import transport.model.DoanhThuXeKhach;
 import transport.model.XeKhach;
 import transport.service.XeKhachService;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class XeKhachController {
+    @Autowired
     private XeKhachService xeKhachService;
     @Autowired
     public XeKhachController(XeKhachService xeKhachService){
@@ -100,6 +103,18 @@ public class XeKhachController {
         else{
             xeKhachService.deleteXeKhach(id);
             return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+
+    //tinh doanh thu xe khach.
+    @RequestMapping(value = "/xeKhach/doanhThu/{startDate}/{endDate}", method = RequestMethod.GET)
+    public ResponseEntity<List<DoanhThuXeKhach>> getDoanhThuXeKhach(@PathVariable("startDate") Date startDate, @PathVariable ("endDate") Date endDate){
+        List<DoanhThuXeKhach> doanhThuXeKhach = xeKhachService.doanhThuXeKhachs(startDate, endDate);
+        if(doanhThuXeKhach.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else{
+            return new ResponseEntity<>(doanhThuXeKhach, HttpStatus.OK);
         }
     }
 }

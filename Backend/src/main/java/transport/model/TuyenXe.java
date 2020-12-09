@@ -20,6 +20,8 @@ public class TuyenXe implements Serializable {
 	@NotNull
 	private String diemCuoi;
 	@NotNull
+	private int quangDuong;
+	@NotNull
 	@Range(min = 1, max =3)
 	private int doPhucTap;
 	@OneToMany(mappedBy = "tuyenXe", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -27,10 +29,11 @@ public class TuyenXe implements Serializable {
 
 	public TuyenXe(){}
 
-	public TuyenXe(Long taiXeId, String diemDau, String diemCuoi, int doPhucTap){
+	public TuyenXe(Long taiXeId, String diemDau, String diemCuoi, int quangDuong, int doPhucTap){
 		this.tuyenXeId = taiXeId;
 		this.diemDau = diemDau;
 		this.diemCuoi = diemCuoi;
+		this.quangDuong = quangDuong;
 		this.doPhucTap = doPhucTap;
 	}
 
@@ -56,6 +59,14 @@ public class TuyenXe implements Serializable {
 
 	public void setDiemDau(String diemDau) {
 		this.diemDau = diemDau;
+	}
+
+	public int getQuangDuong() {
+		return quangDuong;
+	}
+
+	public void setQuangDuong(int quangDuong) {
+		this.quangDuong = quangDuong;
 	}
 
 	public int getDoPhucTap() {
