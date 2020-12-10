@@ -28,7 +28,7 @@ public class XeKhach {
 		this.ngayBaoDuong = ngayBaoDuong;
 	}
 
-	public XeKhach(String bienSo, String mauXe, String hangSanXuat, int doiXe, String model, int soGhe, int soNamSuDung, Date ngayBaoDuong){
+	public XeKhach(String bienSo, String mauXe, String hangSanXuat, int doiXe, String model, int soGhe, int soNamSuDung, Date ngayBaoDuong, String ngayBaoDuongTiepTheo){
 		this.bienSo = bienSo;
 		this.mauXe = mauXe;
 		this.hangSanXuat = hangSanXuat;
@@ -37,6 +37,7 @@ public class XeKhach {
 		this.soGhe = soGhe;
 		this.soNamSuDung = soNamSuDung;
 		this.ngayBaoDuong = ngayBaoDuong;
+		this.ngayBaoDuongTiepTheo = ngayBaoDuongTiepTheo;
 	}
 
 	public Long getXeKhachId() {
@@ -111,4 +112,9 @@ public class XeKhach {
 		this.ngayBaoDuong = ngayBaoDuong;
 	}
 
+	public String getNgayBaoDuongTiepTheo(){ return ngayBaoDuongTiepTheo; }
+
+	public void setNgayBaoDuongTiepTheo(String ngayBaoDuongTiepTheo) {
+		this.ngayBaoDuongTiepTheo = ngayBaoDuongTiepTheo;
+	}
 }
