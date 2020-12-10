@@ -157,14 +157,16 @@ public class XeKhach implements Serializable {
 			//Ngay bao duong tiep theo se bang ngay dung han tru di quangduong/heSoKho.
 			ngayBdTiepTheo = subtractDays(ngayBdTiepTheo, chuyenXe.getTuyenXe().getQuangDuong()/heSoKho);
 		}
-		if(ngayBdTiepTheo.compareTo(new Date(System.currentTimeMillis())) > 0){
+		if(ngayBdTiepTheo.compareTo(new Date(System.currentTimeMillis())) < 0){
 			ngayBaoDuongTiepTheo = "Đã quá hạn bảo dưỡng";
+			return ngayBaoDuongTiepTheo;
 		}
 		else{
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			ngayBaoDuongTiepTheo = dateFormat.format(ngayBdTiepTheo);
+			return ngayBaoDuongTiepTheo;
 		}
-		return ngayBaoDuongTiepTheo;
+//		return ngayBaoDuongTiepTheo;
 	}
 
 	//Ham cong ngay.
