@@ -2,8 +2,10 @@ package transport.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import transport.model.DoanhThuXeKhach;
 import transport.model.XeKhach;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -44,5 +46,11 @@ public class XeKhachService {
     //Delete
     public void deleteXeKhach(Long id){
         restTemplate.delete(REST_SERVICE_URI+"delete/"+id);
+    }
+
+    //Tinh doanh thu xe khach tu ngay A den ngay B.
+    public List<DoanhThuXeKhach> getDoanhThu(Date startDate, Date endDate){
+        List<DoanhThuXeKhach> doanhThuXeKhachs = restTemplate.getForObject(REST_SERVICE_URI + "doanhThu/" + startDate + "/" + endDate , List.class);
+        return doanhThuXeKhachs;
     }
 }

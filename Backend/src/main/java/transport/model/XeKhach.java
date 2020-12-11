@@ -166,7 +166,6 @@ public class XeKhach implements Serializable {
 			ngayBaoDuongTiepTheo = dateFormat.format(ngayBdTiepTheo);
 			return ngayBaoDuongTiepTheo;
 		}
-//		return ngayBaoDuongTiepTheo;
 	}
 
 	//Ham cong ngay.

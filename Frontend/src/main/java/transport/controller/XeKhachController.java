@@ -7,8 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import transport.model.DoanhThuXeKhach;
 import transport.model.XeKhach;
 import transport.service.XeKhachService;
+
+import java.sql.Date;
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/xeKhach")
@@ -71,5 +75,13 @@ public class XeKhachController {
         XeKhach xeKhach = xeKhachService.getXeKhachById(id);
         xeKhachService.deleteXeKhach(id);
         return "redirect:/xeKhach";
+    }
+
+    //Tinh doanh thu.
+    @GetMapping("/doanhThu/{startDate}/{endDate}")
+    public String getDoanhThuXeKhach(@PathVariable("startDate")Date startDate, @PathVariable("endDate") Date endDate, Model model){
+        List<DoanhThuXeKhach> doanhThuXeKhachs = xeKhachService.getDoanhThu(startDate, endDate);
+        model.addAttribute("doanhThuXeKhachs", doanhThuXeKhachs);
+        return "XeKhach/doanhThu";
     }
 }
