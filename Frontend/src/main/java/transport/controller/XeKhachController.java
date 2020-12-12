@@ -77,11 +77,18 @@ public class XeKhachController {
         return "redirect:/xeKhach";
     }
 
+    //Xuat man hinh nhap ngay bat dau va ket thuc de tinh doanh thu.
+
+    @GetMapping("/doanhThu")
+    public String doanhThu(){
+        return "XeKhach/addDoanhThu";
+    }
+
     //Tinh doanh thu.
-    @GetMapping("/doanhThu/{startDate}/{endDate}")
-    public String getDoanhThuXeKhach(@PathVariable("startDate")Date startDate, @PathVariable("endDate") Date endDate, Model model){
+    @GetMapping("/tinhDoanhThu")
+    public String getDoanhThuXeKhach(@RequestParam(name = "startDate") Date startDate, @RequestParam(name = "endDate") Date endDate, Model model){
         List<DoanhThuXeKhach> doanhThuXeKhachs = xeKhachService.getDoanhThu(startDate, endDate);
         model.addAttribute("doanhThuXeKhachs", doanhThuXeKhachs);
-        return "XeKhach/doanhThu";
+        return "XeKhach/tinhDoanhThu";
     }
 }
