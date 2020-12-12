@@ -1,30 +1,161 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      lang="vi">
+	xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Thêm tài xế</title>
+<meta charset="UTF-8">
+<title>Thêm tài xế</title>
+<div th:insert="home::boot"></div>
+<link th:href="@{/css/t.css}" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-              <strong>Thêm tài xế</strong>
-          </div>
-          <div class="panel-body">
-            <form method="post" action="/taiXe/store" th:action="@{/taiXe/store}">
-                <input type="text" name="ten" placeholder="Tên tài xế" required/>
-                <input type="text" name="cmt" placeholder="Chứng minh thư" required/>
-                <input type="text" name="maSoBangLai" placeholder="Mã số bằng lái" required/>
-                <input type="text" name="loaiBang" placeholder="Loại bằng" required/>
-                <input type="text" name="diaChi" placeholder="Địa chỉ" required/>
-                <input type="date" name="ngaySinh" placeholder="yyyy-mm-dd" min="1900-01-01" max="2000-12-31" required/>
-                <input type="text" name="thamNien" placeholder="Thâm niên" required/>
-                <input type="submit" name="submit" class="btn btn-success" value="Thêm"/>
+	<nav th:insert="home::layout"></nav>
+	<div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+            </div>
+            <form id="submit" method="post" action="/taiXe/store" th:action="@{/taiXe/store}">
+                <h3>Thêm tài xế</h3>
+                		<div class="form-group">
+                            <input type="text" name="ten" placeholder="Tên tài xế *" class="form-control" required autofocus/>
+                        </div>
+               <div class="row">
+                    <div class="col-md-6">
+                        
+                        <div class="form-group">
+                            <input type="text" name="cmt" placeholder="Chứng minh thư *" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="maSoBangLai" placeholder="Mã số bằng lái *" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="loaiBang" placeholder="Loại bằng *" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btnContact" value="Thêm" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="diaChi" placeholder="Địa chỉ *" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" name="ngaySinh" min="1900-01-01" max="2000-12-31" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="thamNien" placeholder="Thâm niên *" class="form-control" required/>
+                        </div>
+                    </div>
+                </div>
             </form>
-          </div>
-        </div>
-    </div>
+</div>
+	  <!--<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<strong>Thêm tài xế</strong>
+			</div>
+			<div>
+			<form id="submit" method="post" action="/taiXe/store" th:action="@{/taiXe/store}">
+				<label>
+					<p class="label-txt">Tên tài xế</p> <input type="text" name="ten"
+					class="input" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">Chứng minh thư</p> <input type="text"
+					name="cmt" class="input" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">Mã số bằng lái</p> <input type="text"
+					name="maSoBangLai" class="input" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">Loại bằng</p> <input type="text"
+					name="loaiBang" class="input" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">Địa chỉ</p> <input type="text" name="diaChi" class="input" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">Ngày sinh</p>
+					<input type="date" name="ngaySinh" class="input" min="1900-01-01" max="2000-12-31" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">Thâm niên</p> <input type="text"
+					name="thamNien" class="input" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <input type="submit" name="submit" class="btn btn-success"
+					value="Thêm" />
+			</form>	
+			</div>	
+		</div>
+	
+	</div> -->
+	<!--  <div class="container">
+            <form id="submit" method="post" action="/taiXe/store" th:action="@{/taiXe/store}">
+                <h2>Thêm tài xế</h2>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Tên tài xế</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="ten" placeholder="Tên tài xế" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Chứng minh thư</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="cmt" placeholder="Chứng minh thư" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Mã số bằng lái</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="maSoBangLai" placeholder="Mã số bằng lái" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Loại bằng</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="loaiBang" placeholder="Loại bằng" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Địa chỉ</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="diaChi" placeholder="Địa chỉ" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Ngày sinh</label>
+                    <div class="col-sm-9">
+                        <input type="date" name="ngaySinh" min="1900-01-01" max="2000-12-31" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label class="col-sm-3 control-label">Thâm niên </label>
+                    <div class="col-sm-9">
+                        <input type="number" name="thamNien" placeholder="Thâm niên" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                	<div class="col-sm-9">
+                		<input type="submit" name="submit" class="btn btn-success" value="Thêm" />
+                	</div>
+                </div>
+ 				
+                
+            </form> 
+        </div>  --> 
 </body>
 </html>

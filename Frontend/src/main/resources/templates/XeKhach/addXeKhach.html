@@ -5,9 +5,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Thêm xe khách</title>
+    <div th:insert="home::boot"></div>
+	<link th:href="@{/css/t.css}" rel="stylesheet" />
 </head>
 <body>
-<div class="container">
+<nav th:insert="home::layout"></nav>
+<div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+            </div>
+            <form id="submit" method="post" action="/xeKhach/store" th:action="@{/xeKhach/store}">
+                <h3>Thêm xe khách</h3>
+            
+               <div class="row">
+                    <div class="col-md-6"> 
+                        <div class="form-group">
+                            <input type="text" name="bienSo" placeholder="Biển số *" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="mauXe" placeholder="Màu xe *" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="hangSanXuat" placeholder="Hãng sản xuất *" class="form-control" required/>
+                        </div>
+                        
+                        <div class="form-group">
+                        	<label>&nbsp</label>
+                            <input type="text" name="soNamSuDung" placeholder="Số năm sử dụng *" class="form-control" required/>
+                        </div>
+                       
+                        
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btnContact" value="Thêm" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="model" placeholder="Model *" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="soGhe" placeholder="Số ghế *" class="form-control" required/>
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="doiXe" placeholder="Đời xe *" class="form-control" required/>
+                        </div>
+                        <div class="form-group" >
+                        	<label>Ngày bảo dưỡng: </label>
+                            <input type="date" name="ngayBaoDuong" class="form-control" placeholder="yyyy-mm-dd" min="1900-01-01" max="2000-12-31" required/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+	</div>
+	
+<!--  <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <strong>Thêm xe khách</strong>
@@ -26,6 +77,6 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->
 </body>
 </html>

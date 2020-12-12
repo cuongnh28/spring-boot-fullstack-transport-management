@@ -5,26 +5,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Thêm tuyến xe</title>
+    <div th:insert="home::boot"></div>
+	<link th:href="@{/css/t.css}" rel="stylesheet" />
 </head>
 <body>
-<div class="container">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <strong>Thêm tuyến xe</strong>
-        </div>
-        <div class="panel-body">
+<nav th:insert="home::layout"></nav>
+<div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+            </div>
             <form method="post" action="/tuyenXe/store" th:action="@{/tuyenXe/store}">
-                <input type="text" name="diemDau" placeholder="Điểm đầu" required/>
-                <input type="text" name="diemCuoi" placeholder="Điểm cuối" required/>
-                <select name="doPhucTap">
-                    <option th:value=1 th:text="1"></option>
-                    <option th:value=2 th:text="2"></option>
-                    <option th:value=3 th:text="3"></option>
-                </select>
-                <input type="submit" name="submit" class="btn btn-success" value="Thêm"/>
+                <h3>Thêm tuyến xe</h3>  		
+               	<div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="diemDau" placeholder="Điểm đầu *" class="form-control" required autofocus/>
+                        </div> 
+                    	<div class="form-group">
+                    		<label for="doPhucTap">Độ phức tạp:</label>
+	                        <select name="doPhucTap" class="form-control" id="doPhucTap">
+			                    <option th:value=1 th:text="1"></option>
+			                    <option th:value=2 th:text="2"></option>
+			                    <option th:value=3 th:text="3"></option>
+	               			</select>
+               			</div>
+                        <div class="form-group">
+                        	<input type="submit" name="submit" class="btnContact" value="Thêm" />
+                        </div>
+                    </div>
+                    	
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="diemCuoi" placeholder="Điểm cuối *" class="form-control" required/>
+                        </div>
+                    </div>
+                   
+                </div>
             </form>
-        </div>
-    </div>
-</div>
+	</div>
 </body>
 </html>
