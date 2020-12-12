@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính doanh thu</title>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>Nhập ngày bắt đầu và kết thúc</strong>
+        </div>
+        <div class="panel-body">
+            <form method="get" action="/xeKhach/tinhDoanhThu">
+                <input type="date" name="startDate" placeholder="yyyy-mm-dd" min="2000-01-01" max="2020-12-31" required/>
+                <input type="date" name="endDate" placeholder="yyyy-mm-dd" min="2000-01-01" max="2020-12-31" required/>
+                <input type="submit" name="submit" class="btn btn-success" value="Tính"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
