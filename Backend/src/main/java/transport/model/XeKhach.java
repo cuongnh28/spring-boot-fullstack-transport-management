@@ -44,7 +44,7 @@ public class XeKhach implements Serializable {
 	private Date ngayBaoDuong;
 	@OneToMany(mappedBy = "xeKhach", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ChuyenXe> listChuyenXe;
-	@Transient
+	//@Transient
 	private String ngayBaoDuongTiepTheo;
 
 	public XeKhach(){}
@@ -142,6 +142,11 @@ public class XeKhach implements Serializable {
 	public void setListChuyenXe(List<ChuyenXe> listChuyenXe) {
 		this.listChuyenXe = listChuyenXe;
 	}
+
+//	@JsonIgnore
+//	public void setNgayBaoDuongTiepTheo(String ngayBaoDuongTiepTheo) {
+//		this.ngayBaoDuongTiepTheo = ngayBaoDuongTiepTheo;
+//	}
 
 	public String getNgayBaoDuongTiepTheo(){
 		Date ngayBdTiepTheo = addDays(ngayBaoDuong, 360);
