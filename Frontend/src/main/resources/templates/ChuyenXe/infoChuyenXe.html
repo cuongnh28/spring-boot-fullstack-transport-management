@@ -5,8 +5,10 @@
 <head>
     <title>Thông tin chuyến xe</title>
     <meta charset="UTF-8">
+    <div th:insert="home::boot"></div>
 </head>
 <body>
+<nav th:insert="home::layout"></nav>
 <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading"><br>
@@ -39,6 +41,7 @@
                 </tr>
                 </tbody>
             </table>
+            <a class="btn btn-primary" th:href="'../chuyenXe'" th:text="Thoát"></a>
         </div>
     </div>
 </div>

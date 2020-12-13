@@ -5,26 +5,113 @@
 <head>
     <meta charset="UTF-8">
     <title>Sửa tài xế</title>
+    <div th:insert="home::boot"></div>
+	<link th:href="@{/css/t.css}" rel="stylesheet" />
 </head>
 <body>
-<div class="container">
+
+<nav th:insert="home::layout"></nav>
+<div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+            </div>
+            <form method="post" action="/taiXe/update/${taiXe.taiXeId}" th:action="@{'/taiXe/update/'+${taiXe.taiXeId}}">
+                <h3>Sửa tài xế</h3>
+                		<p>Tên tài xế:</p>
+                		<div class="form-group">
+                            <input type="text" name="ten" placeholder="Tên tài xế *" th:value="${taiXe.ten}" class="form-control" required autofocus/>
+                        </div>
+               <div class="row">
+                    <div class="col-md-6">
+                        <p>Chứng minh thư:</p>
+                        <div class="form-group">
+                            <input type="text" name="cmt" placeholder="Chứng minh thư *" th:value="${taiXe.cmt}" class="form-control" required/>
+                        </div>
+                        <p>Mã số bằng lái:</p>
+                        <div class="form-group">
+                            <input type="text" name="maSoBangLai" placeholder="Mã số bằng lái *" th:value="${taiXe.maSoBangLai}" class="form-control" required/>
+                        </div>
+                        <p>Loại bằng:</p>
+                        <div class="form-group">
+                            <input type="text" name="loaiBang" placeholder="Loại bằng *" th:value="${taiXe.loaiBang}" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                        	<input type="submit" name="submit" class="btnContact" value="Sửa" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    	<p>Địa chỉ:</p>
+                        <div class="form-group">
+                            <input type="text" name="diaChi" placeholder="Địa chỉ *" th:value="${taiXe.diaChi}" class="form-control" required/>
+                        </div>
+                        <p>Ngày sinh:</p>
+                        <div class="form-group">
+                            <input type="date" name="ngaySinh" min="1900-01-01" max="2000-12-31" th:value="${taiXe.ngaySinh}" class="form-control" required/>
+                        </div>
+                        <p>Thâm niên:</p>
+                        <div class="form-group">
+                            <input type="number" name="thamNien" placeholder="Thâm niên *" th:value="${taiXe.thamNien}" class="form-control" required/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+</div>
+<!--  <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <strong>Sửa tài xế</strong>
         </div>
         <div class="panel-body">
             <form method="post" action="/taiXe/update/${taiXe.taiXeId}" th:action="@{'/taiXe/update/'+${taiXe.taiXeId}}">
-                <input type="text" name="ten" th:value="${taiXe.ten}" required/>
-                <input type="text" name="cmt" th:value="${taiXe.cmt}" readonly/>
-                <input type="text" name="maSoBangLai" th:value="${taiXe.maSoBangLai}" readonly/>
-                <input type="text" name="loaiBang" th:value="${taiXe.loaiBang}" required/>
-                <input type="text" name="diaChi" th:value="${taiXe.diaChi}" required/>
-                <input type="date" name="ngaySinh" min="1900-01-01" max="2000-12-31" th:value="${taiXe.ngaySinh}" required/>
-                <input type="text" name="thamNien" th:value="${taiXe.thamNien}" required/>
-                <input type="submit" name="submit" class="btn btn-success" value="Sửa"/>
+                
+                <label>
+					<p class="label-txt">TÊN TÀI XẾ</p> <input type="text" name="ten"
+					class="input" th:value="${taiXe.ten}" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">CHỨNG MINH THƯ</p> <input type="text"
+					name="cmt" class="input" th:value="${taiXe.cmt}" readonly />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">MÃ SỐ BẰNG LÁI</p> <input type="text"
+					name="maSoBangLai" class="input" th:value="${taiXe.maSoBangLai}" readonly />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">LOẠI BẰNG</p> <input type="text"
+					name="loaiBang" class="input" th:value="${taiXe.loaiBang}" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">ĐỊA CHỈ</p> <input type="text" name="diaChi"
+					class="input" th:value="${taiXe.diaChi}" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">NGÀY SINH</p> <input type="date" th:value="${taiXe.ngaySinh}"
+					name="ngaySinh" class="input" min="1900-01-01" max="2000-12-31"
+					required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <label>
+					<p class="label-txt">THÂM NIÊN</p> <input type="text" th:value="${taiXe.thamNien}"
+					name="thamNien" class="input" required />
+					<div class="line-box">
+						<div class="line"></div>
+					</div>
+				</label> <input type="submit" name="submit" class="btn btn-success"
+					value="Sửa" />
             </form>
         </div>
     </div>
-</div>
+</div> -->
 </body>
 </html>

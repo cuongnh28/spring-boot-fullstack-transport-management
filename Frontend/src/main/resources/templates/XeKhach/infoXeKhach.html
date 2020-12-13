@@ -5,8 +5,10 @@
 <head>
     <title>Thông tin xe khách</title>
     <meta charset="UTF-8">
+    <div th:insert="home::boot"></div>
 </head>
 <body>
+<nar th:insert="home::layout"></nar>
 <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading"><br>
@@ -43,6 +45,7 @@
                 </tr>
                 </tbody>
             </table>
+            <a class="btn btn-primary" th:href="'../xeKhach'" th:text="Thoát"></a>
         </div>
     </div>
 </div>

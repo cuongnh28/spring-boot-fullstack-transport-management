@@ -5,12 +5,14 @@
 <head>
     <title>Thông tin tuyến xe</title>
     <meta charset="UTF-8">
+    <div th:insert="home::boot"></div>
 </head>
 <body>
+<nav th:insert="home::layout"></nav>
 <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading"><br>
-            <strong>Thông tin tài xế</strong>
+            <strong>Thông tin tuyến xe</strong>
         </div>
         <div class="panel-body">
             <table class="table table-bordered">
@@ -31,6 +33,7 @@
                 </tr>
                 </tbody>
             </table>
+            <a class="btn btn-primary" th:href="'../tuyenXe'" th:text="Thoát"></a>
         </div>
     </div>
 </div>

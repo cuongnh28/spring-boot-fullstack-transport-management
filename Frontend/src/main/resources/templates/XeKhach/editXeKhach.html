@@ -5,9 +5,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Sửa xe khách</title>
+    <div th:insert="home::boot"></div>
+	<link th:href="@{/css/t.css}" rel="stylesheet" />
 </head>
 <body>
-<div class="container">
+<nav th:insert="home::layout"></nav>
+<div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+            </div>
+            <form id="submit" method="post" action="/xeKhach/update/${xeKhach.xeKhachId}" th:action="@{'/xeKhach/update/'+${xeKhach.xeKhachId}}">
+                <h3>Sửa xe khách</h3>
+            
+               <div class="row">
+                    <div class="col-md-6"> 
+                        <div class="form-group">
+                        	<label>Biển số:</label>
+                            <input type="text" name="bienSo" th:value="${xeKhach.bienSo}" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                        	<label>Màu xe:</label>
+                            <input type="text" name="mauXe" th:value="${xeKhach.mauXe}" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                        	<label>Hãng sản xuất:</label>
+                            <input type="text" name="hangSanXuat" th:value="${xeKhach.hangSanXuat}" class="form-control" required/>
+                        </div>
+                        
+                        <div class="form-group">
+                        	<label>Số năm sử dụng: </label>
+                            <input type="text" name="soNamBaoDuoi" th:value="${xeKhach.soNamSuDung}" class="form-control" required/>
+                        </div>
+                       
+                        
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btnContact" value="Sửa" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        	<label>Model: </label>
+                            <input type="text" name="model" th:value="${xeKhach.model}" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                        	<label>Số ghế:</label>
+                            <input type="text" name="soGhe" th:value="${xeKhach.soGhe}" class="form-control" required/>
+                        </div>
+                         <div class="form-group">
+                         	<label>Đời xe:</label>
+                            <input type="text" name="doiXe" th:value="${xeKhach.doiXe}" class="form-control" required/>
+                        </div>
+                        <div class="form-group" >
+                        	<label>Ngày bảo dưỡng: </label>
+                            <input type="date" name="ngayBaoDuong" class="form-control" th:value="${xeKhach.ngayBaoDuong}" placeholder="yyyy-mm-dd" min="1900-01-01" max="2000-12-31" required/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+	</div>
+<!--  <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <strong>Sửa xe khách</strong>
@@ -26,6 +82,6 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->
 </body>
 </html>
