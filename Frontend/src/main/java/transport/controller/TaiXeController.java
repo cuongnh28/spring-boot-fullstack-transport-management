@@ -3,6 +3,7 @@ package transport.controller;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import transport.model.DoanhThuXeKhach;
 import transport.model.TaiXe;
 import transport.service.TaiXeService;
 @Slf4j
@@ -58,16 +60,17 @@ public class TaiXeController {
 //    }
 
     @GetMapping("/create")
-    public String createTaiXe(){
+    public String createTaiXe(Model model){
+        model.addAttribute("taiXe", new TaiXe());
         return "TaiXe/addTaiXe";
     }
 
     @PostMapping("/store")
-    public String storeTaiXe(@Valid TaiXe taiXe,  Errors errors, BindingResult result, RedirectAttributes redirect){
+    public String storeTaiXe(@Valid TaiXe taiXe,  BindingResult result, RedirectAttributes redirect){
 //    	taiXeService.createTaiXe(taiXe);
-    	System.out.println(taiXe.toString());
-    	if (errors.hasErrors()) {
-    		return "TaiXe/addTaiXe";
+//    	System.out.println(taiXe.toString());
+    	if (result.hasErrors()) {
+    		return "redirect:/taiXe/create";
     		 } 
     	if (taiXeService.testTaiXe(taiXe)==HttpStatus.CREATED) {
     		redirect.addFlashAttribute("success", "Saved successfully!");
@@ -98,9 +101,21 @@ public class TaiXeController {
         taiXeService.deleteTaiXe(id);
         return "redirect:/taiXe";
     }
+    @GetMapping("/salaryDate")
+    public String salaryDate(){
+        return "TaiXe/salaryDate";
+    }
+
+//    //Tinh doanh thu.
+//    @GetMapping("/tinhDoanhThu")
+//    public String getDoanhThuXeKhach(@RequestParam(name = "startDate") Date startDate, @RequestParam(name = "endDate") Date endDate, Model model){
+//        List<DoanhThuXeKhach> doanhThuXeKhachs = xeKhachService.getDoanhThu(startDate, endDate);
+//        model.addAttribute("doanhThuXeKhachs", doanhThuXeKhachs);
+//        return "XeKhach/tinhDoanhThu";
+//    }
     @GetMapping("/salary")
-    public String salaryTaiXe(Model model) throws ParseException, IOException {
-        List<TaiXe> listTaiXe = taiXeService.getSalaryTaiXe();
+    public String salaryTaiXe(@RequestParam(name = "startDate") Date startDate, @RequestParam(name = "endDate") Date endDate, Model model) throws ParseException, IOException {
+        List<TaiXe> listTaiXe = taiXeService.getSalaryTaiXe(startDate, endDate);
     	model.addAttribute("listTaiXe", listTaiXe );
         return "TaiXe/salaryTaiXe";
     }

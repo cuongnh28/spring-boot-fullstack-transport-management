@@ -5,34 +5,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Sửa chuyến xe</title>
+    <div th:insert="home::boot"></div>
+	<link th:href="@{/css/t.css}" rel="stylesheet" />
 </head>
 <body>
-<div class="container">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <strong>Sửa chuyến xe</strong>
-        </div>
-        <div class="panel-body">
+<nav th:insert="home::layout"></nav>
+<div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+            </div>
             <form method="post" action="/chuyenXe/update/${chuyenXe.chuyenXeId}" th:action="@{'/chuyenXe/update/'+${chuyenXe.chuyenXeId}}">
-                <input type="text" name="giaVe" placeholder="Giá vé" th:value="${chuyenXe.giaVe}" required/>
-                <input type="date" name="ngayDi" placeholder="yyyy-mm-dd" min="1900-01-01" max="2020-12-31" th:value="${chuyenXe.ngayDi}" required/>
-                <input type="text" name="soKhach" placeholder="Số khách" th:value="${chuyenXe.soKhach}" required/>
-                <select name="laiXeId">
-                    <option th:each="laiXe: ${listTaiXe}" th:value="${laiXe.taiXeId}" th:text="${laiXe.ten}"></option>
-                </select>
-                <select name="phuXeId">
-                    <option th:each="phuXe: ${listTaiXe}" th:value="${phuXe.taiXeId}" th:text="${phuXe.ten}"></option>
-                </select>
-                <select name="tuyenXeId">
-                    <option th:each="tuyenXe: ${listTuyenXe}" th:value="${tuyenXe.tuyenXeId}" th:text="${tuyenXe.tuyenXeId}"></option>
-                </select>
-                <select name="xeKhachId">
-                    <option th:each="xeKhach: ${listXeKhach}" th:value="${xeKhach.xeKhachId}" th:text="${xeKhach.bienSo}"></option>
-                </select>
-                <input type="submit" name="submit" class="btn btn-success" value="Sửa"/>
+                <h3>Sửa chuyến xe</h3>
+                		<div class="form-group">
+                            <input type="text" name="giaVe"  class="form-control" th:value="${chuyenXe.giaVe}" required/>
+                        </div>
+               <div class="row">
+                    <div class="col-md-6"> 
+                        <div class="form-group">
+                            <input type="date" name="ngayDi" class="form-control" th:value="${chuyenXe.ngayDi}" placeholder="yyyy-mm-dd" min="1900-01-01" max="2020-12-31" required/>
+                        </div>
+                        <div class="form-group">
+                        	<lable>Lái xe: </lable>
+                            <select name="laiXeId" class="form-control">
+			                    <option th:each="laiXe: ${listTaiXe}" th:value="${laiXe.taiXeId}" th:text="${laiXe.ten}"></option>
+			                </select>
+                        </div>
+                        <div class="form-group" >
+                        	<lable>Mã số tuyến xe: </lable>
+                            <select name="tuyenXeId" class="form-control">
+			                    <option th:each="tuyenXe: ${listTuyenXe}" th:value="${tuyenXe.tuyenXeId}" th:text="${tuyenXe.tuyenXeId}"></option>
+			                </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btnContact" value="Sửa" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="soKhach" class="form-control" th:value="${chuyenXe.soKhach}" required/>
+                        </div>
+                        <div class="form-group">
+                        	<lable>Phụ xe: </lable>
+                            <select name="phuXeId" class="form-control">
+			                    <option th:each="phuXe: ${listTaiXe}" th:value="${phuXe.taiXeId}" th:text="${phuXe.ten}"></option>
+			                </select>
+                        </div>
+                        <div class="form-group" >
+                        	<lable>Biển số xe: </lable>
+                            <select name="xeKhachId" class="form-control">
+			                    <option th:each="xeKhach: ${listXeKhach}" th:value="${xeKhach.xeKhachId}" th:text="${xeKhach.bienSo}"></option>
+			                </select>
+                        </div>
+                    </div>
+                </div>
             </form>
-        </div>
-    </div>
-</div>
+	</div>
 </body>
 </html>

@@ -60,7 +60,7 @@ public class XeKhachController {
 
     	System.out.println(xeKhach.toString());
     	if (xeKhachService.testXeKhach(xeKhach)==HttpStatus.NO_CONTENT) {
-    		redirect.addFlashAttribute("failed", "Biển số đã tôn tại. Vui lòng kiểm tra lại!");
+    		redirect.addFlashAttribute("failed", "Biển số đã tồn tại. Vui lòng kiểm tra lại!");
     		return "redirect:/xeKhach/create";
 		}
     	

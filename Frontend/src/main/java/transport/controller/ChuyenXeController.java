@@ -90,11 +90,20 @@ public class ChuyenXeController {
         model.addAttribute("listTaiXe", listTaiXe);
         model.addAttribute("listXeKhach", listXeKhach);
         model.addAttribute("listTuyenXe", listTuyenXe);
+
         return "ChuyenXe/editChuyenXe";
     }
 
     @PostMapping("/update/{id}")
-    public String updateChuyenXe(@PathVariable("id") Long id, ChuyenXe chuyenXe){
+    public String updateChuyenXe(@PathVariable("id") Long id, ChuyenXe chuyenXe, BindingResult result, RedirectAttributes redirect){
+//        System.out.println(chuyenXe.toString());
+//        if (chuyenXeService.testChuyenXe(chuyenXe)==HttpStatus.OK) {
+//            redirect.addFlashAttribute("success", "Updated successfully!");
+//            return "redirect:/chuyenXe/{id}";
+//        }
+//        else
+//            return "ChuyenXe/editChuyenXe";
+//
         chuyenXeService.updateChuyenXe(chuyenXe, id);
         return "redirect:/chuyenXe/{id}";
     }

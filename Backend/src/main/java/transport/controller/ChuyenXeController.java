@@ -103,6 +103,9 @@ public class ChuyenXeController {
         else{
             Long laiXeId = chuyenXeRequest.getLaiXeId();
             Long phuXeId = chuyenXeRequest.getPhuXeId();
+            if(laiXeId == phuXeId){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
             Long tuyenXeId = chuyenXeRequest.getTuyenXeId();
             Long xeKhachId = chuyenXeRequest.getXeKhachId();
             Optional<XeKhach> xeKhach = xeKhachService.getXeKhachById(xeKhachId);

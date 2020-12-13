@@ -3,11 +3,11 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.validation.constraints.Size;
-
 public class TaiXe {
 	private Long taiXeId;
 	private String ten;
-	@Size(min=5, message="Name must be 6 characters long")
+	@Size(min=6, message="Cmt phải có từ 6 số trở lên")
+//	@NotBlank(message = "Lỗi")
 	private String cmt;
 	private String maSoBangLai;
 	private String loaiBang;

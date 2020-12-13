@@ -1,10 +1,6 @@
 package transport.service;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import transport.model.ChuyenXe;
@@ -59,4 +55,21 @@ public class ChuyenXeService {
 //			return 0;
 //		}
 	}
+    public HttpStatus testUpdateChuyenXe(ChuyenXe chuyenXe) {
+        System.out.println("Test API them chuyen xe.");
+        System.out.println(REST_SERVICE_URI);
+//		ResponseEntity<TaiXe> response = restTemplate.getForEntity(REST_SERVICE_URI + "store", TaiXe.class, 1 );
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<ChuyenXe> requestEntity = new HttpEntity<>(chuyenXe, headers);
+        Long id = chuyenXe.getChuyenXeId();
+        ResponseEntity<ChuyenXe> responseEntity = restTemplate.exchange(REST_SERVICE_URI + "update/" + id, HttpMethod.PUT, requestEntity, ChuyenXe.class);
+//		if (response.getStatusCode() == HttpStatus.OK) {
+        // restTemplate.postForLocation(REST_SERVICE_URI+"create", taiXe, TaiXe.class);
+        System.out.println(responseEntity.getStatusCode());
+        return responseEntity.getStatusCode();
+//		} else {
+//			return 0;
+//		}
+    }
 }

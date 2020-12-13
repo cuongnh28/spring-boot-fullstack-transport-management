@@ -4,43 +4,37 @@
       lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Tính doanh thu</title>
+    <title>Tính ngày lương tài xế</title>
     <div th:insert="home::boot"></div>
 	<link th:href="@{/css/t.css}" rel="stylesheet" />
 </head>
 <body>
-<div class="container">
 <nav th:insert="home::layout"></nav>
-
 <div class="container contact-form">
             <div class="contact-image">
                 <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
             </div>
-            <form method="get" action="/xeKhach/tinhDoanhThu">
+            <form method="get" action="/taiXe/salary">
                 <h3>Nhập ngày: </h3>
-
+            
                <div class="row">
                     <div class="col-md-6"> 
                         <div class="form-group">
-                        	<label>Ngày bắt đầu:</label>
+                            <label>Ngày bắt đầu :</label>
                             <input type="date" name="startDate" placeholder="yyyy-mm-dd" min="2000-01-01" max="2020-12-31" class="form-control" required/>
-                        </div>
-
-                        <div class="form-group">
-                        	
-                            <input type="submit" name="submit" class="btnContact" value="Thêm" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                        	<label>Ngày kết thúc:</label>
+                            <label>Ngày kết thúc :</label>
                             <input type="date" name="endDate" placeholder="yyyy-mm-dd" min="2000-01-01" class="form-control" max="2020-12-31" required/>
                         </div>
-
+                       <div class="form-group">
+                            <input type="submit" name="submit" class="btnContact" value="Tính" />
+                        </div>
                     </div>
                 </div>
             </form>
 	</div>
-<div class="container">
 </body>
 </html>

@@ -44,12 +44,11 @@ public class XeKhach implements Serializable {
 	private Date ngayBaoDuong;
 	@OneToMany(mappedBy = "xeKhach", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ChuyenXe> listChuyenXe;
-	//@Transient
 	private String ngayBaoDuongTiepTheo;
 
 	public XeKhach(){}
 
-	public XeKhach(Long xeKhachId, String bienSo, String mauXe, String hangSanXuat, int doiXe, String model, int soGhe, int soNamSuDung, Date ngayBaoDuong){
+	public XeKhach(Long xeKhachId, String bienSo, String mauXe, String hangSanXuat, int doiXe, String model, int soGhe, int soNamSuDung, Date ngayBaoDuong, String ngayBaoDuongTiepTheo){
 		this.xeKhachId = xeKhachId;
 		this.bienSo = bienSo;
 		this.mauXe = mauXe;
@@ -59,6 +58,7 @@ public class XeKhach implements Serializable {
 		this.soGhe = soGhe;
 		this.soNamSuDung = soNamSuDung;
 		this.ngayBaoDuong = ngayBaoDuong;
+		this.ngayBaoDuongTiepTheo = ngayBaoDuongTiepTheo;
 	}
 
 	public Long getXeKhachId() {
@@ -143,34 +143,12 @@ public class XeKhach implements Serializable {
 		this.listChuyenXe = listChuyenXe;
 	}
 
-//	@JsonIgnore
-//	public void setNgayBaoDuongTiepTheo(String ngayBaoDuongTiepTheo) {
-//		this.ngayBaoDuongTiepTheo = ngayBaoDuongTiepTheo;
-//	}
+	public void setNgayBaoDuongTiepTheo(String ngayBaoDuongTiepTheo) {
+		this.ngayBaoDuongTiepTheo = ngayBaoDuongTiepTheo;
+	}
 
-	public String getNgayBaoDuongTiepTheo(){
-		Date ngayBdTiepTheo = addDays(ngayBaoDuong, 360);
-		for(ChuyenXe chuyenXe:listChuyenXe){
-			//Neu he so kho la 2 thi * 1.2 con neu la 3 thi * 1.5
-			int heSoKho = 100;
-			if(chuyenXe.getTuyenXe().getDoPhucTap() == 2){
-				heSoKho *= 1.2;
-			}
-			else if(chuyenXe.getTuyenXe().getDoPhucTap() == 3){
-				heSoKho *= 1.5;
-			}
-			//Ngay bao duong tiep theo se bang ngay dung han tru di quangduong/heSoKho.
-			ngayBdTiepTheo = subtractDays(ngayBdTiepTheo, chuyenXe.getTuyenXe().getQuangDuong()/heSoKho);
-		}
-		if(ngayBdTiepTheo.compareTo(new Date(System.currentTimeMillis())) < 0){
-			ngayBaoDuongTiepTheo = "Đã quá hạn bảo dưỡng";
-			return ngayBaoDuongTiepTheo;
-		}
-		else{
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			ngayBaoDuongTiepTheo = dateFormat.format(ngayBdTiepTheo);
-			return ngayBaoDuongTiepTheo;
-		}
+	public String getNgayBaoDuongTiepTheo() {
+		return ngayBaoDuongTiepTheo;
 	}
 
 	//Ham cong ngay.
@@ -180,9 +158,9 @@ public class XeKhach implements Serializable {
 		c.setTime(date);
 		c.add(Calendar.DATE, days);
 		return new Date(c.getTimeInMillis());
-    }
+	}
 
-    //Ham tru ngay.
+	//Ham tru ngay.
 	@JsonIgnore
 	public static Date subtractDays(Date date, int days) {
 		Calendar c = Calendar.getInstance();

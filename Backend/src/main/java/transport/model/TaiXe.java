@@ -29,7 +29,7 @@ public class TaiXe implements Serializable {
 //	@Size(min = 5, message = "Name must be at least 5 characters long")
 	private String ten;
 	@NotNull
-	@Size(min=5, message="Name must be 6 characters long")
+	@Size(min=6, message="CMT must be 6 characters long")
 	private String cmt;
 	@NotNull
 	private String maSoBangLai;
@@ -146,20 +146,20 @@ public class TaiXe implements Serializable {
 	public void setSalary(float salary) {
 		this.salary= salary;
 	}
-	public void setSalary() throws ParseException{
+	public void setSalary(Date startDate, Date endDate) throws ParseException{
 		long millis=System.currentTimeMillis();   
-    	java.sql.Date date2 =new java.sql.Date(millis);   
+    	endDate =new java.sql.Date(millis);   
 //    	System.out.println(date);
 //    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //    	java.sql.Date dau_thang = (java.sql.Date) sdf.parse("2020-12-01");
     	String str = "2020-12-01";
-    	Date date1 = Date.valueOf(str);
+    	//startDate = Date.valueOf(str);
     	
 		float s1 = 0;
 		
 		for (ChuyenXe j : listChuyenXeLai) {
 			
-			if (j.getNgayDi().after(date1)&&j.getNgayDi().before(date2)||j.getNgayDi().equals(date2)) {
+			if (j.getNgayDi().after(startDate)&&j.getNgayDi().before(endDate)||j.getNgayDi().equals(endDate)) {
 				s1 += j.getGiaVe() * j.getSoKhach() * 0.4;
 				if (j.getTuyenXe().getDoPhucTap() == 2) {
 					s1 += 100;
@@ -172,7 +172,7 @@ public class TaiXe implements Serializable {
 		float s2 =0;
 		for (ChuyenXe k : listChuyenXePhu) {
 			float s = 0;
-			if (k.getNgayDi().after(date1)&&k.getNgayDi().before(date2)||k.getNgayDi().equals(date2)) {
+			if (k.getNgayDi().after(startDate)&&k.getNgayDi().before(endDate)||k.getNgayDi().equals(endDate)) {
 				s += k.getGiaVe() * k.getSoKhach() * 0.4;
 				if (k.getTuyenXe().getDoPhucTap() == 2) {
 					s += 100;

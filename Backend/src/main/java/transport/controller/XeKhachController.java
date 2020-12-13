@@ -1,15 +1,20 @@
 package transport.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import transport.model.ChuyenXe;
 import transport.model.DoanhThuXeKhach;
 import transport.model.XeKhach;
 import transport.service.XeKhachService;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,6 +71,37 @@ public class XeKhachController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else{
+            Date ngayBdTiepTheo = xeKhach.addDays(xeKhach.getNgayBaoDuong(), 360);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String ngayBaoDuongTiepTheo = dateFormat.format(ngayBdTiepTheo);
+            if(ngayBdTiepTheo.compareTo(new Date(System.currentTimeMillis())) < 0){
+                xeKhach.setNgayBaoDuongTiepTheo("Đã quá hạn bảo dưỡng");
+            }
+            else{
+                xeKhach.setNgayBaoDuongTiepTheo(ngayBaoDuongTiepTheo);
+            }
+            if(xeKhach.getListChuyenXe() != null){
+                for(ChuyenXe chuyenXe:xeKhach.getListChuyenXe()){
+                    //Neu he so kho la 2 thi * 1.2 con neu la 3 thi * 1.5
+                    int heSoKho = 100;
+                    if(chuyenXe.getTuyenXe().getDoPhucTap() == 2){
+                        heSoKho *= 1.2;
+                    }
+                    else if(chuyenXe.getTuyenXe().getDoPhucTap() == 1){
+                        heSoKho *= 1.5;
+                    }
+                    //Ngay bao duong tiep theo se bang ngay dung han tru di quangduong/heSoKho.
+                    ngayBdTiepTheo = xeKhach.subtractDays(ngayBdTiepTheo, chuyenXe.getTuyenXe().getQuangDuong()/heSoKho);
+                }
+                if(ngayBdTiepTheo.compareTo(new Date(System.currentTimeMillis())) < 0){
+                    xeKhach.setNgayBaoDuongTiepTheo("Đã quá hạn bảo dưỡng");
+                }
+                else{
+                    dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    ngayBaoDuongTiepTheo = dateFormat.format(ngayBdTiepTheo);
+                    xeKhach.setNgayBaoDuongTiepTheo(ngayBaoDuongTiepTheo);
+                }
+            }
             xeKhachService.saveXeKhach(xeKhach);
             return new ResponseEntity<>(xeKhach, HttpStatus.CREATED);
         }
@@ -88,6 +124,37 @@ public class XeKhachController {
             currentXeKhach.get().setSoGhe(xeKhach.getSoGhe());
             currentXeKhach.get().setSoNamSuDung(xeKhach.getSoNamSuDung());
 
+            Date ngayBdTiepTheo = xeKhach.addDays(xeKhach.getNgayBaoDuong(), 360);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String ngayBaoDuongTiepTheo = dateFormat.format(ngayBdTiepTheo);
+            if(ngayBdTiepTheo.compareTo(new Date(System.currentTimeMillis())) < 0){
+                currentXeKhach.get().setNgayBaoDuongTiepTheo("Đã quá hạn ✖");
+            }
+            else{
+                currentXeKhach.get().setNgayBaoDuongTiepTheo(ngayBaoDuongTiepTheo);
+            }
+            if(xeKhach.getListChuyenXe() != null){
+                for(ChuyenXe chuyenXe:xeKhach.getListChuyenXe()){
+                    //Neu he so kho la 2 thi * 1.2 con neu la 3 thi * 1.5
+                    int heSoKho = 100;
+                    if(chuyenXe.getTuyenXe().getDoPhucTap() == 2){
+                        heSoKho *= 1.2;
+                    }
+                    else if(chuyenXe.getTuyenXe().getDoPhucTap() == 3){
+                        heSoKho *= 1.5;
+                    }
+                    //Ngay bao duong tiep theo se bang ngay dung han tru di quangduong/heSoKho.
+                    ngayBdTiepTheo = xeKhach.subtractDays(ngayBdTiepTheo, chuyenXe.getTuyenXe().getQuangDuong()/heSoKho);
+                }
+                if(ngayBdTiepTheo.compareTo(new Date(System.currentTimeMillis())) < 0){
+                    currentXeKhach.get().setNgayBaoDuongTiepTheo("Đã quá hạn bảo dưỡng");
+                }
+                else{
+                    dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    ngayBaoDuongTiepTheo = dateFormat.format(ngayBdTiepTheo);
+                    currentXeKhach.get().setNgayBaoDuongTiepTheo(ngayBaoDuongTiepTheo);
+                }
+            }
             xeKhachService.saveXeKhach(currentXeKhach.get());
             return new ResponseEntity<>(currentXeKhach.get(), HttpStatus.OK);
         }
@@ -117,4 +184,24 @@ public class XeKhachController {
             return new ResponseEntity<>(doanhThuXeKhach, HttpStatus.OK);
         }
     }
+
+
+//    @JsonIgnore
+//    @RequestMapping(value = "/test", method = RequestMethod.GET)
+//    public static Date addDays(Date date, int days) {
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(date);
+//        c.add(Calendar.DATE, days);
+//        return new Date(c.getTimeInMillis());
+//    }
+//
+//    //Ham tru ngay.
+////    @JsonIgnore
+//    @RequestMapping(value = "/test2", method = RequestMethod.GET)
+//    public static Date subtractDays(Date date, int days) {
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(date);
+//        c.add(Calendar.DATE, -days);
+//        return new Date(c.getTimeInMillis());
+//    }
 }

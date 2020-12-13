@@ -6,6 +6,7 @@ import transport.model.TaiXe;
 import transport.repository.TaiXeRepository;
 import transport.service.TaiXeService;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
@@ -48,20 +49,37 @@ public class TaiXeServiceImpl implements TaiXeService {
     public boolean checkTonTai(String cmt, String maSoBangLai) {
         return taiXeRepo.checkTonTai(cmt, maSoBangLai);
     }
-    @Override
-    public List<TaiXe> getSalaryTaiXe(){
-    	
-    	List<TaiXe> listTaiXe= taiXeRepo.findAll();
-        //List<TaiXe> listTaiXe = jsonArrayToObjectList(restTemplate.getForObject(REST_SERVICE_URI, List.class).toString(), tClass);
-    	for(TaiXe i: listTaiXe) {
-    		try {
-				i.setSalary();
+
+	@Override
+	public List<TaiXe> getSalaryTaiXe(Date startDate, Date endDate) {
+		List<TaiXe> listTaiXe= taiXeRepo.findAll();
+      //List<TaiXe> listTaiXe = jsonArrayToObjectList(restTemplate.getForObject(REST_SERVICE_URI, List.class).toString(), tClass);
+  	for(TaiXe i: listTaiXe) {
+  		try {
+				i.setSalary(startDate, endDate);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    	}
-    	System.out.println(listTaiXe);
-        return listTaiXe;
-    }
+  	}
+  	System.out.println(listTaiXe);
+      return listTaiXe;
+	}
+    
+//    @Override
+//    public List<TaiXe> getSalaryTaiXe(Date startDate, Date endDate){
+//    	
+//    	List<TaiXe> listTaiXe= taiXeRepo.findAll();
+//        //List<TaiXe> listTaiXe = jsonArrayToObjectList(restTemplate.getForObject(REST_SERVICE_URI, List.class).toString(), tClass);
+//    	for(TaiXe i: listTaiXe) {
+//    		try {
+//				i.setSalary(startDate, endDate);
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//    	}
+//    	System.out.println(listTaiXe);
+//        return listTaiXe;
+//    }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import transport.model.TaiXe;
 import transport.service.TaiXeService;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -98,9 +99,9 @@ public class TaiXeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
   //lay bang luong
-    @RequestMapping(value = "/taiXe/salary", method = RequestMethod.GET)
-    public ResponseEntity<List<TaiXe>> getSalaryTaiXe() {
-        List<TaiXe> listTaiXe = taiXeService.getSalaryTaiXe();
+    @RequestMapping(value = "/taiXe/salary/{startDate}/{endDate}", method = RequestMethod.GET)
+    public ResponseEntity<List<TaiXe>> getSalaryTaiXe(@PathVariable("startDate") Date startDate, @PathVariable("endDate") Date endDate) {
+        List<TaiXe> listTaiXe = taiXeService.getSalaryTaiXe(startDate, endDate);
         if (listTaiXe.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

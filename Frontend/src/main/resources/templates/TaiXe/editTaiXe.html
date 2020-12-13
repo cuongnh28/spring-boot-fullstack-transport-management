@@ -25,7 +25,7 @@
                     <div class="col-md-6">
                         <p>Chứng minh thư:</p>
                         <div class="form-group">
-                            <input type="text" name="cmt" placeholder="Chứng minh thư *" th:value="${taiXe.cmt}" class="form-control" required/>
+                            <input type="text" name="cmt" placeholder="Chứng minh thư *" minlength="6" th:value="${taiXe.cmt}" class="form-control" required/>
                         </div>
                         <p>Mã số bằng lái:</p>
                         <div class="form-group">
@@ -33,7 +33,10 @@
                         </div>
                         <p>Loại bằng:</p>
                         <div class="form-group">
-                            <input type="text" name="loaiBang" placeholder="Loại bằng *" th:value="${taiXe.loaiBang}" class="form-control" required/>
+                            <select name="loaiBang" class="form-control">
+                                <option th:value="B1" th:text="B1"></option>
+                                <option th:value="B2" th:text="B2"></option>
+                            </select>
                         </div>
                         <div class="form-group">
                         	<input type="submit" name="submit" class="btnContact" value="Sửa" />

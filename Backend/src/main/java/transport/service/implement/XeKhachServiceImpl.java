@@ -22,7 +22,6 @@ public class XeKhachServiceImpl implements XeKhachService {
     @Autowired
     private XeKhachRepository xeKhachRepo;
 
-
     @Override
     public List<XeKhach> getAllXeKhach() {
         return (List<XeKhach>) xeKhachRepo.findAll();
