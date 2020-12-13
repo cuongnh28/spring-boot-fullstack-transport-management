@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <title>Thông tin tài xế</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><br>
+            <strong>Thông tin tài xế</strong>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Chứng minh thư</th>
+                    <th>Mã số bằng lái</th>
+                    <th>Loại bằng</th>
+                    <th>Địa chỉ</th>
+                    <th>Ngày sinh</th>
+                    <th>Thâm niên</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${taiXe.taiXeId}"></td>
+                    <td th:text="${taiXe.ten}"></td>
+                    <td th:text="${taiXe.cmt}"></td>
+                    <td th:text="${taiXe.maSoBangLai}"></td>
+                    <td th:text="${taiXe.loaiBang}"></td>
+                    <td th:text="${taiXe.diaChi}"></td>
+                    <td th:text="${taiXe.ngaySinh}"></td>
+                    <td th:text="${taiXe.thamNien} + ' năm'"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

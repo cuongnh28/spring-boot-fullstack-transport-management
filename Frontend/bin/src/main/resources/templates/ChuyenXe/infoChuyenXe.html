@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <title>Thông tin chuyến xe</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><br>
+            <strong>Thông tin chuyến xe</strong>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Mã số chuyến xe</th>
+                    <th>Ngày đi</th>
+                    <th>Số khách</th>
+                    <th>Gía vé</th>
+                    <th>Lái Xe</th>
+                    <th>Phụ xe</th>
+                    <th>Mã số tuyến xe</th>
+                    <th>Biển số xe</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${chuyenXe.chuyenXeId}"></td>
+                    <td th:text="${chuyenXe.ngayDi}"></td>
+                    <td th:text="${chuyenXe.soKhach}"></td>
+                    <td th:text="${chuyenXe.giaVe} + ' đ'"></td>
+                    <td th:text="${chuyenXe.tenLaiXe}"></td>
+                    <td th:text="${chuyenXe.tenPhuXe}"></td>
+                    <td th:text="${chuyenXe.tuyenXeId}"></td>
+                    <td th:text="${chuyenXe.bienSoXe}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

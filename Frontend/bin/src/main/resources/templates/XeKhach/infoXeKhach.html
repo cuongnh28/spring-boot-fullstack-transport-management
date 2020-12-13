@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <title>Thông tin xe khách</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><br>
+            <strong>Thông tin xe khách</strong>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Biển số</th>
+                    <th>Màu xe</th>
+                    <th>Hãng sản xuất</th>
+                    <th>Đời xe</th>
+                    <th>Model</th>
+                    <th>Số ghế</th>
+                    <th>Số năm sử dụng</th>
+                    <th>Ngày bảo dưỡng</th>
+                    <th>Ngày bảo dưỡng tới</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${xeKhach.xeKhachId}"></td>
+                    <td th:text="${xeKhach.bienSo}"></td>
+                    <td th:text="${xeKhach.mauXe}"></td>
+                    <td th:text="${xeKhach.hangSanXuat}"></td>
+                    <td th:text="${xeKhach.doiXe}"></td>
+                    <td th:text="${xeKhach.model}"></td>
+                    <td th:text="${xeKhach.soGhe}"></td>
+                    <td th:text="${xeKhach.soNamSuDung}"></td>
+                    <td th:text="${xeKhach.ngayBaoDuong}"></td>
+                    <td th:text="${xeKhach.ngayBaoDuongTiepTheo}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

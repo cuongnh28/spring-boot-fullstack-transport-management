@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa chuyến xe</title>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>Sửa chuyến xe</strong>
+        </div>
+        <div class="panel-body">
+            <form method="post" action="/chuyenXe/update/${chuyenXe.chuyenXeId}" th:action="@{'/chuyenXe/update/'+${chuyenXe.chuyenXeId}}">
+                <input type="text" name="giaVe" placeholder="Giá vé" th:value="${chuyenXe.giaVe}" required/>
+                <input type="date" name="ngayDi" placeholder="yyyy-mm-dd" min="1900-01-01" max="2020-12-31" th:value="${chuyenXe.ngayDi}" required/>
+                <input type="text" name="soKhach" placeholder="Số khách" th:value="${chuyenXe.soKhach}" required/>
+                <select name="laiXeId">
+                    <option th:each="laiXe: ${listTaiXe}" th:value="${laiXe.taiXeId}" th:text="${laiXe.ten}"></option>
+                </select>
+                <select name="phuXeId">
+                    <option th:each="phuXe: ${listTaiXe}" th:value="${phuXe.taiXeId}" th:text="${phuXe.ten}"></option>
+                </select>
+                <select name="tuyenXeId">
+                    <option th:each="tuyenXe: ${listTuyenXe}" th:value="${tuyenXe.tuyenXeId}" th:text="${tuyenXe.tuyenXeId}"></option>
+                </select>
+                <select name="xeKhachId">
+                    <option th:each="xeKhach: ${listXeKhach}" th:value="${xeKhach.xeKhachId}" th:text="${xeKhach.bienSo}"></option>
+                </select>
+                <input type="submit" name="submit" class="btn btn-success" value="Sửa"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

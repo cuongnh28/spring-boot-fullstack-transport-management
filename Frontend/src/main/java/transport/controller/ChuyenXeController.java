@@ -2,12 +2,16 @@ package transport.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import transport.model.ChuyenXe;
 import transport.model.TaiXe;
 import transport.model.TuyenXe;
@@ -62,9 +66,18 @@ public class ChuyenXeController {
     }
 
     @PostMapping("/store")
-    public String storeChuyenXe(ChuyenXe chuyenXe){
-        chuyenXeService.creatChuyenXe(chuyenXe);
-        return "redirect:/chuyenXe";
+    public String storeChuyenXe(ChuyenXe chuyenXe, BindingResult result, RedirectAttributes redirect){
+    	System.out.println(chuyenXe.toString());
+    	if (chuyenXeService.testChuyenXe(chuyenXe)==HttpStatus.OK) {
+    		redirect.addFlashAttribute("success", "Saved successfully!");
+            return "redirect:/chuyenXe";
+		}
+//    	if (chuyenXeService.testChuyenXe(chuyenXe)==HttpStatus.BAD_REQUEST) {
+//        redirect.addFlashAttribute("failed", "Số khách vượt quá số ghế của xe. Vui lòng kiểm tra lại! ");
+//		return "redirect:/chuyenXe/create";
+//    	}
+    	redirect.addFlashAttribute("failed", "Vui lòng xem lại thông tin đã điền! ");
+		return "redirect:/chuyenXe/create";
     }
 
     @GetMapping("/edit/{id}")

@@ -1,15 +1,22 @@
 package transport.model;
 import java.sql.Date;
+import java.util.List;
+
+import javax.validation.constraints.Size;
 
 public class TaiXe {
 	private Long taiXeId;
 	private String ten;
+	@Size(min=5, message="Name must be 6 characters long")
 	private String cmt;
 	private String maSoBangLai;
 	private String loaiBang;
 	private String diaChi;
 	private Date ngaySinh;
 	private int thamNien;
+	private List<ChuyenXe> listChuyenXePhu;
+	private List<ChuyenXe> listChuyenXeLai;
+	private float salary;
 
 	public TaiXe(){}
 

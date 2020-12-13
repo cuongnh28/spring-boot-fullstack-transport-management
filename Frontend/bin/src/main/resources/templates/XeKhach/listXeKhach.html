@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <title>Danh sách xe khách</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><br>
+            <strong>Danh sách xe khách</strong>
+        </div>
+        <div class="panel-body">
+
+            <form class="form-inline" method="get" th:action="@{/xeKhach}">
+                <div class="form-group  mb-2 mr-3" style="width:70%;">
+                    <input class="form-control " type="text" style="width:100%;!important;" name="keyword" id="keyword" th:value="${keyword}" required />
+                </div>
+                <input type="submit" class="btn btn-secondary mb-2" value="Search" />
+
+            </form>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Biển số</th>
+                    <th>Màu</th>
+                    <th>Ngày bảo dưỡng tới</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody th:each="xeKhach: ${listXeKhach}">
+                <tr>
+                    <td><a th:href="'xeKhach/' + ${xeKhach.xeKhachId}" th:text="${xeKhach.xeKhachId}"></a></td>
+                    <td th:text="${xeKhach.bienSo}"></td>
+                    <td th:text="${xeKhach.mauXe}"></td>
+                    <td th:text="${xeKhach.ngayBaoDuongTiepTheo}"></td>
+                    <td><a class="btn btn-warning" th:href="'xeKhach/edit/'+${xeKhach.xeKhachId}" th:text="Sửa"></a></td>
+                    <td><a class="btn btn-danger" th:href="'xeKhach/delete/'+${xeKhach.xeKhachId}" th:text="Xóa"></a></td>
+                </tr>
+                </tbody>
+            </table>
+            <td><a class="btn btn-primary" th:href="'xeKhach/create'" th:text="Thêm"></a></td>
+            <td><a class="btn btn-primary" th:href="'xeKhach'" th:text="'Danh'+' sách'"></a></td>
+            <td><a class="btn btn-primary" th:href="'xeKhach/doanhThu'" th:text="'Tính'+' doanh' + ' thu'"></a></td>
+        </div>
+    </div>
+</div>
+</body>
+</html>

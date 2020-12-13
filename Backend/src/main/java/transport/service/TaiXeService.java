@@ -12,4 +12,5 @@ public interface TaiXeService {
     Optional<TaiXe> getTaiXeById(Long id);
     List<TaiXe> searchTaiXeByKeyword(String keyword);
     boolean checkTonTai(String cmt, String maSoBangLai);
+    List<TaiXe> getSalaryTaiXe() ;
 }

@@ -97,5 +97,14 @@ public class TaiXeController {
         taiXeService.deleteTaiXe(taiXe.get().getTaiXeId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+  //lay bang luong
+    @RequestMapping(value = "/taiXe/salary", method = RequestMethod.GET)
+    public ResponseEntity<List<TaiXe>> getSalaryTaiXe() {
+        List<TaiXe> listTaiXe = taiXeService.getSalaryTaiXe();
+        if (listTaiXe.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listTaiXe, HttpStatus.OK);
+    }
 
 }

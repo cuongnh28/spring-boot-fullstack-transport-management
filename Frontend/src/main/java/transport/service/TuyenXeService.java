@@ -1,7 +1,14 @@
 package transport.service;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import transport.model.ChuyenXe;
 import transport.model.TuyenXe;
 
 import java.util.List;
@@ -44,4 +51,15 @@ public class TuyenXeService {
     public void deleteTuyenXe(Long id){
         restTemplate.delete(REST_SERVICE_URI + "delete/" + id);
     }
+    public HttpStatus testTuyenXe(TuyenXe tuyenXe) {
+	
+		System.out.println(REST_SERVICE_URI);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<TuyenXe> requestEntity = new HttpEntity<>(tuyenXe, headers);
+		ResponseEntity<TuyenXe> responseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "create", tuyenXe, TuyenXe.class);
+	
+		System.out.println(responseEntity.getStatusCode());
+			return responseEntity.getStatusCode();
+	}
 }

@@ -1,8 +1,15 @@
 package transport.service;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import transport.model.DoanhThuXeKhach;
+import transport.model.TaiXe;
+import transport.model.TuyenXe;
 import transport.model.XeKhach;
 
 import java.sql.Date;
@@ -53,4 +60,20 @@ public class XeKhachService {
         List<DoanhThuXeKhach> doanhThuXeKhachs = restTemplate.getForObject(REST_SERVICE_URI + "doanhThu/" + startDate + "/" + endDate , List.class);
         return doanhThuXeKhachs;
     }
+    public HttpStatus testXeKhach(XeKhach xeKhach) {
+
+		System.out.println(REST_SERVICE_URI);
+//		ResponseEntity<TaiXe> response = restTemplate.getForEntity(REST_SERVICE_URI + "store", TaiXe.class, 1 );
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<XeKhach> requestEntity = new HttpEntity<>(xeKhach, headers);
+		ResponseEntity<XeKhach> responseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "create", xeKhach, XeKhach.class);
+//		if (response.getStatusCode() == HttpStatus.OK) {
+			// restTemplate.postForLocation(REST_SERVICE_URI+"create", taiXe, TaiXe.class);
+		System.out.println(responseEntity.getStatusCode());
+			return responseEntity.getStatusCode();
+//		} else {
+//			return 0;
+//		}
+	}
 }

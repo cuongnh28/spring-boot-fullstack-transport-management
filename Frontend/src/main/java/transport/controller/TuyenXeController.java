@@ -2,9 +2,13 @@ package transport.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import transport.model.TuyenXe;
 import transport.service.TuyenXeService;
 
@@ -47,9 +51,16 @@ public class TuyenXeController {
     }
 
     @PostMapping("/store")
-    public String storeTuyenXe(TuyenXe tuyenXe, Model model){
-        tuyenXeService.addTuyenXe(tuyenXe);
-        return "redirect:/tuyenXe";
+    public String storeTuyenXe(TuyenXe tuyenXe, BindingResult result, RedirectAttributes redirect){
+    	if (tuyenXeService.testTuyenXe(tuyenXe)==HttpStatus.CREATED) {
+    		redirect.addFlashAttribute("success", "Saved successfully!");
+    		return "redirect:/tuyenXe";
+		}
+    	
+        redirect.addFlashAttribute("Vui lòng điền đầy đủ thông tin");
+		return "redirect:/tuyenXe/create";
+    	
+        
     }
 
     @GetMapping("/edit/{id}")

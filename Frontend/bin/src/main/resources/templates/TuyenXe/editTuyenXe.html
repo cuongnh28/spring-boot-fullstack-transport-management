@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa tài xế</title>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>Sửa tuyến xe</strong>
+        </div>
+        <div class="panel-body">
+            <form method="post" action="/tuyenXe/update/${tuyenXe.tuyenXeId}" th:action="@{'/tuyenXe/update/'+${tuyenXe.tuyenXeId}}">
+                <input type="text" name="diemDau" th:value="${tuyenXe.diemDau}" required/>
+                <input type="text" name="diemCuoi" th:value="${tuyenXe.diemCuoi}" required/>
+<!--                <input type="text" name="doPhucTap" min=1 max=3 th:value="${tuyenXe.doPhucTap}" required/>-->
+                <select name="doPhucTap">
+                    <option th:value=1 th:text="1"></option>
+                    <option th:value=2 th:text="2"></option>
+                    <option th:value=3 th:text="3"></option>
+                </select>
+                <input type="submit" name="submit" class="btn btn-success" value="Sửa"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

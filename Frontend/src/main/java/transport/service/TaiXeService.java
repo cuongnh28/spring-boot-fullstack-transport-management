@@ -1,5 +1,10 @@
 package transport.service;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import transport.model.TaiXe;
@@ -49,4 +54,26 @@ public class TaiXeService {
     public void deleteTaiXe(Long id){
         restTemplate.delete(REST_SERVICE_URI+"delete/"+id);
     }
+    public HttpStatus testTaiXe(TaiXe taiXe) {
+		System.out.println("Test API them tai xe.");
+		System.out.println(REST_SERVICE_URI);
+//		ResponseEntity<TaiXe> response = restTemplate.getForEntity(REST_SERVICE_URI + "store", TaiXe.class, 1 );
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<TaiXe> requestEntity = new HttpEntity<>(taiXe, headers);
+		ResponseEntity<TaiXe> responseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "create", taiXe, TaiXe.class);
+//		if (response.getStatusCode() == HttpStatus.OK) {
+			// restTemplate.postForLocation(REST_SERVICE_URI+"create", taiXe, TaiXe.class);
+		System.out.println(responseEntity.getStatusCode());
+			return responseEntity.getStatusCode();
+//		} else {
+//			return 0;
+//		}
+	}
+    //Salary
+    public List<TaiXe> getSalaryTaiXe() {
+		System.out.println("Test API lay toan bo luong tai xe.");
+		List<TaiXe> listTaiXe = restTemplate.getForObject(REST_SERVICE_URI+"salary", List.class);
+		return listTaiXe;
+	}
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm xe khách</title>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>Thêm xe khách</strong>
+        </div>
+        <div class="panel-body">
+            <form method="post" action="/xeKhach/store" th:action="@{/xeKhach/store}">
+                <input type="text" name="bienSo" placeholder="Biển số" required/>
+                <input type="text" name="mauXe" placeholder="Màu xe" required/>
+                <input type="text" name="hangSanXuat" placeholder="Hãng sản xuất" required/>
+                <input type="text" name="doiXe" placeholder="Đời xe" required/>
+                <input type="text" name="model" placeholder="Model" required/>
+                <input type="text" name="soGhe" placeholder="Số ghế" required/>
+                <input type="text" name="soNamBaoDuoi" placeholder="Số năm bảo dưỡng" required/>
+                <input type="date" name="ngayBaoDuong" placeholder="yyyy-mm-dd" min="1900-01-01" max="2000-12-31" required/>
+                <input type="submit" name="submit" class="btn btn-success" value="Thêm"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
