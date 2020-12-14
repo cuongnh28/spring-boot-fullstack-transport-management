@@ -23,8 +23,6 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String home() {
-		//System.out.println("==========> " + myVariable);
-		System.out.println("+++++++++++ " + env.getProperty("JAVA_HOME"));
 		return "login";
 	}
 
