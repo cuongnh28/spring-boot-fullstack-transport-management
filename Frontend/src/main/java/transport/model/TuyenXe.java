@@ -9,20 +9,23 @@ public class TuyenXe {
 	private String diemCuoi;
 	@Range(min = 1, max =3)
 	private int doPhucTap;
+	private int quangDuong;
 
 	public TuyenXe(){}
 
-	public TuyenXe(Long taiXeId, String diemDau, String diemCuoi, int doPhucTap){
+	public TuyenXe(Long taiXeId, String diemDau, String diemCuoi, int doPhucTap, int quangDuong){
 		this.tuyenXeId = taiXeId;
 		this.diemDau = diemDau;
 		this.diemCuoi = diemCuoi;
 		this.doPhucTap = doPhucTap;
+		this.quangDuong = quangDuong;
 	}
 
-	public TuyenXe(String diemDau, String diemCuoi, int doPhucTap){
+	public TuyenXe(String diemDau, String diemCuoi, int doPhucTap, int quangDuong){
 		this.diemDau = diemDau;
 		this.diemCuoi = diemCuoi;
 		this.doPhucTap = doPhucTap;
+		this.quangDuong = quangDuong;
 	}
 
 	public Long getTuyenXeId() {
@@ -57,4 +60,11 @@ public class TuyenXe {
 		this.doPhucTap = doPhucTap;
 	}
 
+	public int getQuangDuong() {
+		return quangDuong;
+	}
+
+	public void setQuangDuong(int quangDuong) {
+		this.quangDuong = quangDuong;
+	}
 }

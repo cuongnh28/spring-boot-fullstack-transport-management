@@ -6,44 +6,49 @@
     <meta charset="UTF-8">
     <title>Sửa tài xế</title>
     <div th:insert="home::boot"></div>
-	<link th:href="@{/css/t.css}" rel="stylesheet" />
+    <link th:href="@{/css/t.css}" rel="stylesheet" />
 </head>
 <body>
-	<nav th:insert="home::layout"></nav>
-	<div class="container contact-form">
-            <div class="contact-image">
-                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
-            </div>
-            <form method="post" action="/tuyenXe/update/${tuyenXe.tuyenXeId}" th:action="@{'/tuyenXe/update/'+${tuyenXe.tuyenXeId}}">
-                <h3>Sửa tuyến xe</h3>  		
-               	<div class="row">
-                    <div class="col-md-6">
-                        <p>Điểm đầu:</p>
-                        <div class="form-group">
-                            <input type="text" name="diemDau" th:value="${tuyenXe.diemDau}" class="form-control" required autofocus/>
-                        </div> 
-                        <p>Độ phức tạp:</p>
-                    	<div class="form-group">
-	                        <select name="doPhucTap" class="form-control">
-			                    <option th:value=1 th:text="1"></option>
-			                    <option th:value=2 th:text="2"></option>
-			                    <option th:value=3 th:text="3"></option>
-	               			</select>
-               			</div>
-                        <div class="form-group">
-                        	<input type="submit" name="submit" class="btnContact" value="Sửa" />
-                        </div>
-                    </div>
-                    	
-                    <div class="col-md-6">
-                    	 <p>Điểm cuối:</p>
-                        <div class="form-group">
-                            <input type="text" name="diemCuoi" th:value="${tuyenXe.diemCuoi}" class="form-control" required/>
-                        </div>
-                    </div>
-                   
+<nav th:insert="home::layout"></nav>
+<div class="container contact-form">
+    <div class="contact-image">
+        <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+    </div>
+    <form method="post" action="/tuyenXe/update/${tuyenXe.tuyenXeId}" th:action="@{'/tuyenXe/update/'+${tuyenXe.tuyenXeId}}">
+        <h3>Sửa tuyến xe</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Điểm đầu:</p>
+                <div class="form-group">
+                    <input type="text" name="diemDau" th:value="${tuyenXe.diemDau}" class="form-control" required autofocus/>
                 </div>
-            </form>
-	</div> 
+                <p>Độ phức tạp:</p>
+                <div class="form-group">
+                    <select name="doPhucTap" class="form-control">
+                        <option th:value=1 th:text="1"></option>
+                        <option th:value=2 th:text="2"></option>
+                        <option th:value=3 th:text="3"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btnContact" value="Sửa" />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <p>Điểm cuối:</p>
+                <div class="form-group">
+                    <input type="text" name="diemCuoi" th:value="${tuyenXe.diemCuoi}" class="form-control" required/>
+                </div>
+                <p>Quãng đường:</p>
+                <div class="form-group">
+                    <input type="text" name="quangDuong" placeholder="Quãng đường *" th:value="${tuyenXe.quangDuong}" class="form-control" required autofocus/>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
 </body>
 </html>
