@@ -1,2 +1,0 @@
-INSERT INTO `transportationmanagementsystem`.`tai_xe` (`ten`, `cmt`, `dia_chi`, `loai_bang`, `ma_so_bang_lai`, `ngay_sinh`, `tham_nien`) VALUES ('Tai', '11120898', 'Hà Nam', 'B1', 'B223', '2010-10-12', '1');
-INSERT INTO `transportationmanagementsystem`.`tai_xe` (`ten`, `cmt`, `dia_chi`, `loai_bang`, `ma_so_bang_lai`, `ngay_sinh`, `tham_nien`) VALUES ('Hòa', '1108', 'Hà Nội', 'B12', 'B54', '2000-10-12', '3');
