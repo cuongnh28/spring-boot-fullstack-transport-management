@@ -39,12 +39,12 @@ public class ChuyenXeController {
     @RequestMapping(value = "/chuyenXe", method = RequestMethod.GET)
     public ResponseEntity<List<ChuyenXe>> getAllChuyenXe(){
         List<ChuyenXe> listChuyenXe = chuyenXeService.getAllChuyenXe();
-        if(listChuyenXe.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        else{
+//        if(listChuyenXe.isEmpty()){
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        else{
             return new ResponseEntity<>(listChuyenXe, HttpStatus.OK);
-        }
+//        }
     }
 
     //Lay chuyen xe theo id.
